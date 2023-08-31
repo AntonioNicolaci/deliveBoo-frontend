@@ -40,7 +40,7 @@ export default {
 
 <template>
   <div id="card">
-    <button v-for="singleType in arrTypes" class="-ms-card" @click="restSearch(singleType.id)">
+    <button v-for="singleType in arrTypes" :key="singleType.id" class="-ms-card" @click="restSearch(singleType.id)">
       {{ singleType.name }}
     </button>
   </div>
