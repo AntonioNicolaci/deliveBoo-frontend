@@ -5,6 +5,10 @@ import AppMain from "./assets/components/AppMain.vue";
 import AppFooter from "./assets/components/AppFooter.vue";
 
 export default {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5f969cd209e6af8434a450538e27302f6ca11927
   components: {
     AppNav,
     AppMain,
@@ -33,7 +37,6 @@ export default {
     getTypes() {
       axios.get("http://127.0.0.1:8000/api/types").then((response) => {
         this.arrTypes = response.data;
-        console.log("fatto");
       });
     },
     restSearch(type) {
@@ -66,6 +69,7 @@ export default {
   </ul> -->
 </template>
 
+<<<<<<< HEAD
 <style lang="scss">
 * {
   margin: 0;
@@ -83,4 +87,8 @@ export default {
   color: cadetblue;
   padding-inline: 5px;
 }
+=======
+<style lang="scss" scoped>
+@import 'bootstrap/scss/bootstrap';
+>>>>>>> 5f969cd209e6af8434a450538e27302f6ca11927
 </style>
