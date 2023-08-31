@@ -34,7 +34,6 @@ export default {
     getTypes() {
       axios.get("http://127.0.0.1:8000/api/types").then((response) => {
         this.arrTypes = response.data;
-        console.log("fatto");
       });
     },
     restSearch(type) {
@@ -68,14 +67,5 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-#card {
-  display: flex;
-  flex-direction: row;
-}
-
-.-ms-card {
-  background-color: bisque;
-  color: cadetblue;
-  padding-inline: 5px;
-}
+@import 'bootstrap/scss/bootstrap';
 </style>
