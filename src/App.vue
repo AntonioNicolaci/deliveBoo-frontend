@@ -5,10 +5,6 @@ import AppMain from "./assets/components/AppMain.vue";
 import AppFooter from "./assets/components/AppFooter.vue";
 
 export default {
-<<<<<<< HEAD
-=======
-
->>>>>>> 5f969cd209e6af8434a450538e27302f6ca11927
   components: {
     AppNav,
     AppMain,
@@ -69,8 +65,8 @@ export default {
   </ul> -->
 </template>
 
-<<<<<<< HEAD
 <style lang="scss">
+  @import 'bootstrap/scss/bootstrap';
 * {
   margin: 0;
   padding: 0;
@@ -87,8 +83,3 @@ export default {
   color: cadetblue;
   padding-inline: 5px;
 }
-=======
-<style lang="scss" scoped>
-@import 'bootstrap/scss/bootstrap';
->>>>>>> 5f969cd209e6af8434a450538e27302f6ca11927
-</style>
