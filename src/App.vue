@@ -26,9 +26,9 @@ export default {
       });
     },
     restSearch(type) {
-            this.type = type;
-            this.getRestaurants();
-        },
+      this.type = type;
+      this.getRestaurants();
+    },
 
   },
   created() {
@@ -45,14 +45,13 @@ export default {
     </button>
   </div>
   <ul id="ul">
-      <template v-for="rest in arrRest">
-        <li>{{ rest.rest_name }}</li>
-        <li>{{ rest.address }}</li>
-        <li>{{ rest.vat }}</li>
-        <li>{{ rest.img }}</li>
-      </template>
-    </ul>
-  
+    <template v-for="rest in arrRest" :key="rest">
+      <li>{{ rest.rest_name }}</li>
+      <li>{{ rest.address }}</li>
+      <li>{{ rest.vat }}</li>
+      <li>{{ rest.img }}</li>
+    </template>
+  </ul>
 </template>
 
 <style lang="scss" scoped>
@@ -60,6 +59,7 @@ export default {
   display: flex;
   flex-direction: row;
 }
+
 .-ms-card {
   background-color: bisque;
   color: cadetblue;
