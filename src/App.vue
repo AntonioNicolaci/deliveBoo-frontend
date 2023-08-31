@@ -1,5 +1,8 @@
 <script>
 import axios from 'axios';
+import AppNav from './assets/components/AppNav.vue';
+import AppMain from './assets/components/AppMain.vue';
+import AppFooter from './assets/components/AppFooter.vue';
 
 export default {
   data() {
@@ -39,19 +42,22 @@ export default {
 </script>
 
 <template>
-  <div id="card">
-    <button v-for="singleType in arrTypes" :key="singleType.id" class="-ms-card" @click="restSearch(singleType.id)">
+  <AppNav />
+  <AppMain />
+  <AppFooter />
+  <!-- <div id="card">
+    <button v-for="singleType in arrTypes" class="-ms-card" @click="restSearch(singleType.id)">
       {{ singleType.name }}
     </button>
   </div>
   <ul id="ul">
-    <template v-for="rest in arrRest" :key="rest">
+    <template v-for="rest in arrRest">
       <li>{{ rest.rest_name }}</li>
       <li>{{ rest.address }}</li>
       <li>{{ rest.vat }}</li>
       <li>{{ rest.img }}</li>
     </template>
-  </ul>
+  </ul> -->
 </template>
 
 <style lang="scss" scoped>
