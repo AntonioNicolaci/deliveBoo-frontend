@@ -5,6 +5,13 @@ import AppMain from "./assets/components/AppMain.vue";
 import AppFooter from "./assets/components/AppFooter.vue";
 
 export default {
+
+  components: {
+    AppNav,
+    AppMain,
+    AppFooter,
+  },
+
   data() {
     return {
       restaurants: "",
