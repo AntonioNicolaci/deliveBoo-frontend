@@ -5,6 +5,12 @@ import AppMain from "./assets/components/AppMain.vue";
 import AppFooter from "./assets/components/AppFooter.vue";
 
 export default {
+  components: {
+    AppNav,
+    AppMain,
+    AppFooter,
+  },
+
   data() {
     return {
       restaurants: "",
@@ -46,12 +52,12 @@ export default {
   <AppMain />
   <AppFooter />
   <!-- <div id="card">
-    <button v-for="singleType in arrTypes" class="-ms-card" @click="restSearch(singleType.id)">
+    <button v-for="singleType in arrTypes" :key="singleType.id" class="-ms-card" @click="restSearch(singleType.id)">
       {{ singleType.name }}
     </button>
   </div>
   <ul id="ul">
-    <template v-for="rest in arrRest">
+    <template v-for="rest in arrRest" :key="rest.id">
       <li>{{ rest.rest_name }}</li>
       <li>{{ rest.address }}</li>
       <li>{{ rest.vat }}</li>
@@ -60,7 +66,13 @@ export default {
   </ul> -->
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #card {
   display: flex;
   flex-direction: row;
