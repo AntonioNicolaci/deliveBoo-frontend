@@ -1,0 +1,68 @@
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      restaurants: "",
+      arrRest: [],
+      arrTypes: [],
+    };
+  },
+  methods: {
+    getRestaurants() {
+      axios.get('http://127.0.0.1:8000/api/restaurants', {
+        params: {
+          type: this.type,
+        }
+      }).then(response => {
+        this.arrRest = response.data;
+      });
+    },
+    getTypes() {
+      axios.get('http://127.0.0.1:8000/api/types').then(response => {
+        this.arrTypes = response.data;
+        console.log("fatto");
+      });
+    },
+    restSearch(type) {
+            this.type = type;
+            this.getRestaurants();
+        },
+
+  },
+  created() {
+    this.getTypes();
+  },
+};
+
+</script>
+
+<template>
+  <div id="card">
+    <button v-for="singleType in arrTypes" class="-ms-card" @click="restSearch(singleType.id)">
+      {{ singleType.name }}
+    </button>
+  </div>
+  <ul id="ul">
+      <template v-for="rest in arrRest">
+        <li>{{ rest.rest_name }}</li>
+        <li>{{ rest.address }}</li>
+        <li>{{ rest.vat }}</li>
+        <li>{{ rest.img }}</li>
+      </template>
+    </ul>
+  
+</template>
+
+<style lang="scss" scoped>
+#card {
+  display: flex;
+  flex-direction: row;
+}
+.-ms-card {
+  background-color: bisque;
+  color: cadetblue;
+  padding-inline: 5px;
+}
+</style>
