@@ -1,22 +1,29 @@
 <script>
+import AppTypeSelector from './AppTypeSelector.vue'
 export default {
   props: {
     arrTypes: Object,
   },
   data() {
     return {
-      linkImg: `img/${this.arrTypes.img}`,
+      linkImg: "",
       randomPerTe: "",
     };
   },
   methods: {
     rndNumber() {
       this.randomPerTe = Math.floor(Math.random() * Object.keys(this.arrTypes).length);
-    }
+    },
+    addImg(img) {
+      return `assets/img/${this.img}`;
+    },
   },
   created() {
     this.rndNumber();
   },
+  components: {
+      AppTypeSelector,
+    },
 };
 </script>
 
@@ -25,10 +32,7 @@ export default {
     <div class="container-type">
       <h1 class="font">Restaurants</h1>
       <div class="cont-type d-flex">
-        <div class="type" v-for="singleType in arrTypes" :key="singleType.id">
-          {{ singleType.name }}
-          <img :src="linkImg" :alt="arrTypes.name" />
-        </div>
+        <AppTypeSelector v-for="singleType in arrTypes" :key="singleType.id"/>
       </div>
     </div>
     <div class="cont-text" style="background: linear-gradient(267deg, #9F672E 2.83%, #37363D 97.17%);">
