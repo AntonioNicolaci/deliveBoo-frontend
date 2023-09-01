@@ -66,7 +66,8 @@ export default {
 </template>
 
 <style lang="scss">
-  @import 'bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
+
 * {
   margin: 0;
   padding: 0;
@@ -83,3 +84,4 @@ export default {
   color: cadetblue;
   padding-inline: 5px;
 }
+</style>
