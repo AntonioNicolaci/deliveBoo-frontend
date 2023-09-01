@@ -18,9 +18,19 @@ export default {
             </div>
 
             <div class="buttons d-flex flex-row gap-4">
-                <button type="button" id="btn-registrati" class="btn btn-light">Registrati</button>
-                <button type="button" id="btn-accedi" class="btn btn-light">Accedi</button>
-                <button type="button" id="btn-carrello" class="btn btn-light">Carrello</button>
+
+                <a href="http://127.0.0.1:8000/">
+                    <button type="button" id="btn-registrati" class="btn btn-light">Registrati</button>
+                </a>
+
+                <a href="http://127.0.0.1:8000/login">
+                    <button type="button" id="btn-accedi" class="btn btn-light">Accedi</button>
+                </a>
+
+                <a href="#">
+                    <button type="button" id="btn-carrello" class="btn btn-light">Carrello</button>
+                </a>
+
             </div>
         </div>
     </nav>
