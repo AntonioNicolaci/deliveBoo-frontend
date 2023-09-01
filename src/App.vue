@@ -48,7 +48,8 @@ export default {
 
 <template>
   <AppNav />
-  <AppMain :arrTypes="arrTypes"/>
+  <router-view></router-view>
+  <AppMain :arrTypes="arrTypes" />
   <AppFooter />
   <!-- <div id="card">
     <button v-for="singleType in arrTypes" :key="singleType.id" class="-ms-card" @click="restSearch(singleType.id)">

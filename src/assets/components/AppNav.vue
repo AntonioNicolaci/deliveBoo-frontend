@@ -27,9 +27,10 @@ export default {
                     <button type="button" id="btn-accedi" class="btn btn-light">Accedi</button>
                 </a>
 
-                <a href="#">
+                <router-link :to="{ name: 'cart' }" class="nav-link active" aria-current="page">
                     <button type="button" id="btn-carrello" class="btn btn-light">Carrello</button>
-                </a>
+                </router-link>
+
 
             </div>
         </div>

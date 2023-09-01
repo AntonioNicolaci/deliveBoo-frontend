@@ -22,8 +22,8 @@ export default {
     this.rndNumber();
   },
   components: {
-      AppTypeSelector,
-    },
+    AppTypeSelector,
+  },
 };
 </script>
 
@@ -32,12 +32,13 @@ export default {
     <div class="container-type">
       <h1 class="font">Restaurants</h1>
       <div class="cont-type d-flex">
-        <AppTypeSelector v-for="singleType in arrTypes" :key="singleType.id"/>
+        <AppTypeSelector v-for="singleType in arrTypes" :key="singleType.id" />
       </div>
     </div>
     <div class="cont-text" style="background: linear-gradient(267deg, #9F672E 2.83%, #37363D 97.17%);">
       <h2 class="d-inline-block text-light">Per te: </h2>
-      <span class="text-light fs-5" style=""> {{ arrTypes[randomPerTe].description }}
+      <span class="text-light fs-5" style="">
+        <!-- {{ arrTypes[randomPerTe].description }} -->
       </span>
     </div>
     <div class="cont-card">
