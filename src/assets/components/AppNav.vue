@@ -11,16 +11,16 @@ export default {
 </script>
 
 <template>
-    <nav>
-        <div class="container">
+    <nav class="py-4">
+        <div class="container d-flex align-items-center justify-content-between ">
             <div class="logo">
                 <img src="../img/coloratofinale_360.png" alt="">
             </div>
 
-            <div class="buttons">
-                <button type="button" class="btn btn-light">Registrati</button>
-                <button type="button" class="btn btn-light">Accedi</button>
-                <button type="button" class="btn btn-light">Carrello</button>
+            <div class="buttons d-flex flex-row gap-4">
+                <button type="button" id="btn-registrati" class="btn btn-light">Registrati</button>
+                <button type="button" id="btn-accedi" class="btn btn-light">Accedi</button>
+                <button type="button" id="btn-carrello" class="btn btn-light">Carrello</button>
             </div>
         </div>
     </nav>
@@ -36,5 +36,22 @@ export default {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+nav {
+    background-color: #E6E0D7;
+}
+
+#btn-registrati,
+#btn-accedi,
+#btn-carrello {
+    color: #37363C;
+    border: 1px solid #37363C;
+    border-radius: 10px;
+}
+
+.jumbo img {
+    width: 100%;
+    background-size: cover;
 }
 </style>
