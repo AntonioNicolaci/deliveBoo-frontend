@@ -1,12 +1,14 @@
 <script>
 import axios from "axios";
 import AppNav from "./assets/components/AppNav.vue";
+import AppJumbo from "./assets/components/AppJumbo.vue";
 import AppMain from "./assets/components/AppMain.vue";
 import AppFooter from "./assets/components/AppFooter.vue";
 
 export default {
   components: {
     AppNav,
+    AppJumbo,
     AppMain,
     AppFooter,
   },
@@ -48,7 +50,8 @@ export default {
 
 <template>
   <AppNav />
-  <AppMain :arrTypes="arrTypes"/>
+  <AppJumbo />
+  <AppMain :arrTypes="arrTypes" />
   <AppFooter />
   <!-- <div id="card">
     <button v-for="singleType in arrTypes" :key="singleType.id" class="-ms-card" @click="restSearch(singleType.id)">
