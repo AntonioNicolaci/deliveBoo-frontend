@@ -50,8 +50,8 @@ export default {
 
 <template>
   <AppNav />
-  <router-view></router-view>
   <AppJumbo />
+  <router-view></router-view>
   <AppMain :arrTypes="arrTypes" />
   <AppFooter />
   <!-- <div id="card">

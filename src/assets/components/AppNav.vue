@@ -35,9 +35,9 @@ export default {
             </div>
         </div>
     </nav>
-    <div class="jumbo">
+    <!-- <div class="jumbo">
         <img src="../img/jumbo-deliveboo.png" alt="">
-    </div>
+    </div> -->
 </template>
 
 <style>
