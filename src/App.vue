@@ -1,54 +1,54 @@
 <script>
-import axios from "axios";
 import AppNav from "./assets/components/AppNav.vue";
 import AppMain from "./assets/components/AppMain.vue";
 import AppFooter from "./assets/components/AppFooter.vue";
 
 export default {
+
+  // data() {
+  //   return {
+  //     restaurants: "",
+  //     arrRest: [],
+  //     arrTypes: [],
+  //   };
+  // },
+  // methods: {
+  //   getRestaurants() {
+  //     axios
+  //       .get("http://127.0.0.1:8000/api/restaurants", {
+  //         params: {
+  //           type: this.type,
+  //         },
+  //       })
+  //       .then((response) => {
+  //         this.arrRest = response.data;
+  //       });
+  //   },
+  //   getTypes() {
+  //     axios.get("http://127.0.0.1:8000/api/types").then((response) => {
+  //       this.arrTypes = response.data;
+  //     });
+  //   },
+  //   restSearch(type) {
+  //     this.type = type;
+  //     this.getRestaurants();
+  //   },
+  // },
+  // created() {
+  //   this.getTypes();
+  // },
+  
   components: {
     AppNav,
     AppMain,
     AppFooter,
-  },
-
-  data() {
-    return {
-      restaurants: "",
-      arrRest: [],
-      arrTypes: [],
-    };
-  },
-  methods: {
-    getRestaurants() {
-      axios
-        .get("http://127.0.0.1:8000/api/restaurants", {
-          params: {
-            type: this.type,
-          },
-        })
-        .then((response) => {
-          this.arrRest = response.data;
-        });
-    },
-    getTypes() {
-      axios.get("http://127.0.0.1:8000/api/types").then((response) => {
-        this.arrTypes = response.data;
-      });
-    },
-    restSearch(type) {
-      this.type = type;
-      this.getRestaurants();
-    },
-  },
-  created() {
-    this.getTypes();
   },
 };
 </script>
 
 <template>
   <AppNav />
-  <AppMain :arrTypes="arrTypes"/>
+  <AppMain/>
   <AppFooter />
   <!-- <div id="card">
     <button v-for="singleType in arrTypes" :key="singleType.id" class="-ms-card" @click="restSearch(singleType.id)">

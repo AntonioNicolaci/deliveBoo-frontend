@@ -1,29 +1,53 @@
 <script>
+import axios from "axios";
 import AppTypeSelector from './AppTypeSelector.vue'
 export default {
-  props: {
-    arrTypes: Object,
-  },
-  data() {
-    return {
-      linkImg: "",
-      randomPerTe: "",
-    };
-  },
-  methods: {
-    rndNumber() {
-      this.randomPerTe = Math.floor(Math.random() * Object.keys(this.arrTypes).length);
-    },
-    addImg(img) {
-      return `assets/img/${this.img}`;
-    },
-  },
-  created() {
-    this.rndNumber();
-  },
+  // props: {
+  //   arrTypes: Object,
+  // },
+  // data() {
+  //   return {
+  //     linkImg: "",
+  //     randomPerTe: "",
+  //   };
+  // },
+  // methods: {
+  //   rndNumber() {
+  //     this.randomPerTe = Math.floor(Math.random() * Object.keys(this.arrTypes).length);
+  //   },
+  //   addImg(img) {
+  //     return `assets/img/${this.img}`;
+  //   },
+  // },
+  // created() {
+  //   this.rndNumber();
+  // },
   components: {
       AppTypeSelector,
     },
+
+  data() {
+    return {
+      restaurants: "",
+      arrRest: [],
+      arrTypes: [],
+    };
+  },
+  methods: {
+    
+    getTypes() {
+      axios.get("http://127.0.0.1:8000/api/types").then((response) => {
+        this.arrTypes = response.data;
+      });
+    },
+    // restSearch(type) {
+    //   this.type = type;
+    //   this.getRestaurants();
+    // },
+  },
+  created() {
+    this.getTypes();
+  },
 };
 </script>
 
@@ -32,12 +56,13 @@ export default {
     <div class="container-type">
       <h1 class="font">Restaurants</h1>
       <div class="cont-type d-flex">
-        <AppTypeSelector v-for="singleType in arrTypes" :key="singleType.id"/>
+        <AppTypeSelector v-for="singleType in arrTypes" :key="singleType.id" :singleType="singleType"/>
       </div>
     </div>
     <div class="cont-text" style="background: linear-gradient(267deg, #9F672E 2.83%, #37363D 97.17%);">
       <h2 class="d-inline-block text-light">Per te: </h2>
-      <span class="text-light fs-5" style=""> {{ arrTypes[randomPerTe].description }}
+      <span class="text-light fs-5" style="">
+        <!-- {{ arrTypes[randomPerTe].description }} -->
       </span>
     </div>
     <div class="cont-card">
