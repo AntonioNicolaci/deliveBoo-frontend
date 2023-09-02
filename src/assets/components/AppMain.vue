@@ -23,8 +23,8 @@ export default {
   //   this.rndNumber();
   // },
   components: {
-      AppTypeSelector,
-    },
+    AppTypeSelector,
+  },
 
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
     };
   },
   methods: {
-    
+
     getTypes() {
       axios.get("http://127.0.0.1:8000/api/types").then((response) => {
         this.arrTypes = response.data;
@@ -46,7 +46,10 @@ export default {
     // },
   },
   created() {
-    this.getTypes();
+    this.rndNumber();
+  },
+  components: {
+    AppTypeSelector,
   },
 };
 </script>
@@ -56,7 +59,7 @@ export default {
     <div class="container-type">
       <h1 class="font">Restaurants</h1>
       <div class="cont-type d-flex">
-        <AppTypeSelector v-for="singleType in arrTypes" :key="singleType.id" :singleType="singleType"/>
+        <AppTypeSelector v-for="singleType in arrTypes" :key="singleType.id" :singleType="singleType" />
       </div>
     </div>
     <div class="cont-text" style="background: linear-gradient(267deg, #9F672E 2.83%, #37363D 97.17%);">

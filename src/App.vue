@@ -50,6 +50,7 @@ export default {
 
 <template>
   <AppNav />
+  <router-view></router-view>
   <AppJumbo />
   <AppMain :arrTypes="arrTypes" />
   <AppFooter />

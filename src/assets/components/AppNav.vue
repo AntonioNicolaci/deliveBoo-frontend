@@ -27,13 +27,17 @@ export default {
                     <button type="button" id="btn-accedi" class="btn btn-light">Accedi</button>
                 </a>
 
-                <a href="#">
+                <router-link :to="{ name: 'cart' }" class="nav-link active" aria-current="page">
                     <button type="button" id="btn-carrello" class="btn btn-light">Carrello</button>
-                </a>
+                </router-link>
+
 
             </div>
         </div>
     </nav>
+    <div class="jumbo">
+        <img src="../img/jumbo-deliveboo.png" alt="">
+    </div>
 </template>
 
 <style>
@@ -55,5 +59,10 @@ nav {
     color: #37363C;
     border: 1px solid #37363C;
     border-radius: 10px;
+}
+
+.jumbo img {
+    width: 100%;
+    background-size: cover;
 }
 </style>
