@@ -2,6 +2,7 @@
 export default {
     props: {
         singleType: Object,
+        active: Boolean,
     },
     data() {
         return {
@@ -15,7 +16,7 @@ export default {
     <template v-if="active == false">
         <img src="" alt="">
         <div>
-            {{ singleType.name}}
+            {{ singleType.name }}
         </div>
     </template>
     <template v-else-if="active == true">
@@ -24,6 +25,4 @@ export default {
         </div>
     </template>
 </template>
-<style lang="scss" scoped>
-    
-</style>
+<style lang="scss" scoped></style>
