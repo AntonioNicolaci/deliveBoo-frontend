@@ -1,7 +1,7 @@
 <script>
 export default {
     props: {
-        singleType: Object,
+        singleType: Array,
         active: Boolean,
     },
     data() {
