@@ -1,21 +1,17 @@
 <script>
 import axios from "axios";
-import AppTypeSelector from "./AppTypeSelector.vue";
-import AppRestaurantCard from "./AppRestaurantCard.vue";
+import AppTypeSelector from "../components/AppTypeSelector.vue";
+import AppRestaurantCard from "../components/AppRestaurantCard.vue";
 export default {
-
-  props: {
-    arrayTypes: Array,
-    arrRest: Object,
-  },
-
 
   data() {
     return {
       linkImg: "",
       randomPerTe: "",
-      // restaurants: "",
-      arraTypes: [],
+      arrTypes: {},
+      arrRest: {},
+      resType: {},
+      arrPlate: {},
 
     };
   },
@@ -30,9 +26,18 @@ export default {
       this.type = type;
       // Esegui una ricerca in base al tipo di ristorante qui
     },
+    getData() {
+        axios.get("http://127.0.0.1:8000/api/data")
+          .then((response) => {
+            this.arrRest = response.data.restaurants
+            this.resType = response.data.res_type
+            this.arratypes = response.data.types
+            this.arrPlate = response.data.plates
+          })
+      }
   },
   created() {
-    this.rndNumber();
+      this.getData();
   },
 
   components: {
@@ -47,7 +52,7 @@ export default {
     <div class="container-type">
       <h1 class="font">Restaurants</h1>
       <div class="cont-type d-flex gap-4">
-        <AppTypeSelector v-for="singleType in arrayTypes" :key="singleType.id" :singleType="singleType" :active="true" />
+        <AppTypeSelector v-for="singleType in arrTypes" :key="singleType.id" :singleType="singleType" :active="true" />
       </div>
     </div>
     <div class="cont-text" style="background: linear-gradient(267deg, #9F672E 2.83%, #37363D 97.17%);">
