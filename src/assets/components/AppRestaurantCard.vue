@@ -1,18 +1,16 @@
 <script>
 export default {
     props: {
-        restaurant: Array,
+        restaurant: Object,
     },
 
     data() {
 
         return {
-            img : "/img/" + this.restaurant.img,
+            img: "/img/" + this.restaurant.img,
         }
 
     },
-
-
 }
 </script>
 

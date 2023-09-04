@@ -6,7 +6,7 @@ export default {
 
   props: {
     arrayTypes: Array,
-    arrRest: Object,
+    arrRest: Array,
   },
 
 
@@ -15,7 +15,7 @@ export default {
       linkImg: "",
       randomPerTe: "",
       // restaurants: "",
-      arraTypes: [],
+      dataArrayTypes: [],
 
     };
   },
