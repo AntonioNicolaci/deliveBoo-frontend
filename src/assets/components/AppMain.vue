@@ -1,46 +1,47 @@
 <script>
 import axios from "axios";
-import AppTypeSelector from './AppTypeSelector.vue'
+import AppTypeSelector from "./AppTypeSelector.vue";
 import AppRestaurantCard from "./AppRestaurantCard.vue";
 export default {
+
   props: {
     arrayTypes: Array,
-    arrRest: Object,
+    arrRest: Array,
   },
-  // data() {
-  //   return {
-  //     linkImg: "",
-  //     randomPerTe: "",
-  //     restaurants: "",
-  //     arrTypes: [],
-  //   };
-  // },
+
+
+  data() {
+    return {
+      linkImg: "",
+      randomPerTe: "",
+      // restaurants: "",
+      arraTypes: [],
+
+    };
+  },
   methods: {
     rndNumber() {
-      this.randomPerTe = Math.floor(Math.random() * Object.keys(this.arrayTypes).length);
+      this.randomPerTe = Math.floor(Math.random() * this.arrayTypes.length);
     },
-
     addImg(img) {
       return `assets/img/${img}`;
     },
-
     restSearch(type) {
       this.type = type;
-      this.getRestaurants();
+      // Esegui una ricerca in base al tipo di ristorante qui
     },
-
-
   },
   created() {
     this.rndNumber();
   },
+
   components: {
+
     AppTypeSelector,
     AppRestaurantCard,
   },
 };
 </script>
-
 <template>
   <div class="container-fluid">
     <div class="container-type">
@@ -56,10 +57,13 @@ export default {
       </span>
     </div>
     <div class="cont-card">
-      <AppRestaurantCard v-for="rest in arrRest" :key="rest" />
+      <AppRestaurantCard v-for="restaurant in arrRest" :key="restaurant.id" :restaurant="restaurant" />
     </div>
   </div>
 </template>
+
+
+
 
 <style lang="scss">
 .container-fluid {

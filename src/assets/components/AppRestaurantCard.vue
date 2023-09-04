@@ -1,18 +1,18 @@
 <script>
 export default {
-    data() {
-        return {
-            arrRest: [],
-        }
+    props: {
+        restaurant: Object,
     },
 
-    methods: {
-        getRestaurants() {
-            axios.get("http://127.0.0.1:8000/api/restaurants").then((response) => {
-                this.arrRest = response.data;
-            });
-        },
+    data() {
+
+        return {
+
+        }
+
     },
+
+
 }
 </script>
 

@@ -11,8 +11,9 @@ export default {
     return {
       active: true,
       restaurants: "",
-      arrRest: [],
       arrayTypes: [],
+      arrRest: [],
+
     };
   },
   methods: {
@@ -26,6 +27,7 @@ export default {
         .then((response) => {
           this.arrRest = response.data;
         });
+
     },
     getTypes() {
       axios
@@ -54,8 +56,8 @@ export default {
 <template>
   <AppNav />
   <AppJumbo />
+  <AppMain :arrayTypes="arrayTypes" :arrRest="arrRest" />
   <router-view></router-view>
-  <AppMain :arrayTypes="arrayTypes" />
   <AppFooter />
   <!-- <div id="card">
     <button v-for="singleType in arrTypes" :key="singleType.id" class="-ms-card" @click="restSearch(singleType.id)">
