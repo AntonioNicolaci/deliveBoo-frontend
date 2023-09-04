@@ -7,7 +7,7 @@ export default {
     data() {
 
         return {
-
+            img : "/img/" + this.restaurant.img,
         }
 
     },
@@ -20,7 +20,7 @@ export default {
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-4">
-                <img :src="restaurant.img" class="img-fluid rounded-start" :alt="restaurant.name">
+                <img :src=img class="img-fluid rounded-start" :alt="restaurant.name">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
