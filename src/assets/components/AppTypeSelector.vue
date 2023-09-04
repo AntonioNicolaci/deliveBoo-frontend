@@ -7,7 +7,7 @@ export default {
     data() {
         return {
             actived: false,
-            img: "/img/" + this.singleType.img,
+            img: "/" + this.singleType.img,
         }
     },
 }
@@ -38,5 +38,9 @@ export default {
 .cont-type:hover {
     background-color: rgb(55, 54, 60);
     color: white;
+}
+img {
+    width: 50px;
+    height: 50px;
 }
 </style>
