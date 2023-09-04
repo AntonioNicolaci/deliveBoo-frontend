@@ -6,7 +6,7 @@ export default {
 
   props: {
     arrayTypes: Array,
-    arrRest: Array,
+    arrRest: Object,
   },
 
 
