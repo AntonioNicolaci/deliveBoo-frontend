@@ -31,7 +31,7 @@ export default {
         .then((response) => {
           this.arrRest = response.data.restaurants
           this.resType = response.data.res_type
-          this.arratypes = response.data.types
+          this.arrTypes = response.data.types
           this.arrPlate = response.data.plates
         })
     }
