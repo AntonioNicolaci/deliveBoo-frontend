@@ -92,6 +92,10 @@ export default {
 .cont-card {
   margin-top: 1.5rem;
   padding-inline: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  justify-content: center;
 }
 
 .border {
