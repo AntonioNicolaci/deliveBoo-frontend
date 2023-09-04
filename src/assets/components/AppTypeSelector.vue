@@ -7,19 +7,21 @@ export default {
     data() {
         return {
             actived: false,
-            linkImg: "../img/" + this.singleType.img,
+            img: "/img/" + this.singleType.img,
         }
     },
 }
+
 </script>
 <template>
+    <h1>{{ console.log(singleType) }}</h1>
     <template v-if="active == false">
-        <img :src="singleType.img" :alt="singleType.name">
         <div class="cont-type d-flex align-items-end justify-content-center">
             {{ singleType.name }}
         </div>
     </template>
     <template v-else-if="active == true">
+        <img :src=img :alt="singleType.name">
         <div class="cont-type d-flex align-items-end justify-content-center">
             {{ singleType.name }}
         </div>

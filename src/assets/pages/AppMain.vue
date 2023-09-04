@@ -27,17 +27,17 @@ export default {
       // Esegui una ricerca in base al tipo di ristorante qui
     },
     getData() {
-        axios.get("http://127.0.0.1:8000/api/data")
-          .then((response) => {
-            this.arrRest = response.data.restaurants
-            this.resType = response.data.res_type
-            this.arratypes = response.data.types
-            this.arrPlate = response.data.plates
-          })
-      }
+      axios.get("http://127.0.0.1:8000/api/data")
+        .then((response) => {
+          this.arrRest = response.data.restaurants
+          this.resType = response.data.res_type
+          this.arratypes = response.data.types
+          this.arrPlate = response.data.plates
+        })
+    }
   },
   created() {
-      this.getData();
+    this.getData();
   },
 
   components: {
