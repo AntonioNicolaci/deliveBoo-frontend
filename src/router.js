@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import home from "./assets/components/AppMain.vue";
+import home from "./assets/pages/AppMain.vue";
 import AppCart from "./assets/pages/Cart.vue";
 
 const router = createRouter({

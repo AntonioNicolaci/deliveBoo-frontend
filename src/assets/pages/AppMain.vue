@@ -1,7 +1,7 @@
 <script>
 import axios from "axios";
-import AppTypeSelector from "./AppTypeSelector.vue";
-import AppRestaurantCard from "./AppRestaurantCard.vue";
+import AppTypeSelector from "../components/AppTypeSelector.vue";
+import AppRestaurantCard from "../components/AppRestaurantCard.vue";
 export default {
 
   data() {
