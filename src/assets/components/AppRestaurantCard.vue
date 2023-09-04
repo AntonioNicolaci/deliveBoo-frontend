@@ -8,10 +8,11 @@ export default {
 
     methods: {
         getRestaurants() {
-            axios.get("http://127.0.0.1:8000/api/restaurants").then((response) => {
-                this.arrRest = response.data;
-            });
+            this.arrRest = sessionStorage.getItem("restaurants");
         },
+    },
+    created() {
+        this.getRestaurants();
     },
 }
 </script>
