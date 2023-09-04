@@ -17,23 +17,15 @@ export default {
     };
   },
   methods: {
-    getRestaurants() {
+    getData() {
       axios
-        .get("http://127.0.0.1:8000/api/restaurants", {
-          params: {
-            type: this.type,
-          },
+        .get("http://127.0.0.1:8000/api/data", {
         })
         .then((response) => {
-          this.arrRest = response.data;
+          this.arrRest = response.data.restaurants;
+          this.arrayTypes = response.data.types;
         });
 
-    },
-    getTypes() {
-      axios
-        .get("http://127.0.0.1:8000/api/types").then((response) => {
-          this.arrayTypes = response.data;
-        });
     },
     restSearch(type) {
       this.type = type;
@@ -41,7 +33,7 @@ export default {
     },
   },
   created() {
-    this.getTypes();
+    this.getData();
   },
 
   components: {
