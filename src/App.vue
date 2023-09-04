@@ -27,10 +27,10 @@ export default {
         });
 
     },
-    restSearch(type) {
-      this.type = type;
-      this.getRestaurants();
-    },
+    // restSearch(type) {
+    //   this.type = type;
+    //   this.getRestaurants();
+    // },
   },
   created() {
     this.getData();
