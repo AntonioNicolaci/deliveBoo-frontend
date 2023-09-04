@@ -19,8 +19,9 @@ export default {
     rndNumber() {
       this.randomPerTe = Math.floor(Math.random() * Object.keys(this.arrayTypes).length);
     },
+
     addImg(img) {
-      return `assets/img/${this.img}`;
+      return `assets/img/${img}`;
     },
 
     restSearch(type) {
@@ -44,7 +45,7 @@ export default {
   <div class="container-fluid">
     <div class="container-type">
       <h1 class="font">Restaurants</h1>
-      <div class="cont-type d-flex">
+      <div class="cont-type d-flex gap-4">
         <AppTypeSelector v-for="singleType in arrayTypes" :key="singleType.id" :singleType="singleType" :active="true" />
       </div>
     </div>
@@ -55,7 +56,7 @@ export default {
       </span>
     </div>
     <div class="cont-card">
-      <AppRestaurantCard v-for="rest in   arrRest  " :key="rest" />
+      <AppRestaurantCard v-for="rest in   arrRest" :key="rest" />
     </div>
   </div>
 </template>
@@ -75,17 +76,6 @@ export default {
 .font {
   font-size: 4rem;
   color: rgb(55, 54, 60);
-}
-
-.type {
-  height: 170px;
-  background: white;
-  width: 100px;
-  border-radius: 4rem;
-}
-
-.type:hover {
-  background-color: rgb(55, 54, 60);
 }
 
 .cont-text {
