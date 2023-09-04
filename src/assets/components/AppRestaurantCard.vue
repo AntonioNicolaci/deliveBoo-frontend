@@ -7,7 +7,7 @@ export default {
     data() {
 
         return {
-            img : "/img/" + this.restaurant.img,
+            img: "/img/" + this.restaurant.img,
         }
 
     },
@@ -30,18 +30,6 @@ export default {
             </div>
         </div>
     </div>
-
-    <!-- 
-
-    <div class="cont-card">
-        <div class="card border" style="width: 18rem">
-            <img :src="rest.img" class="card-img-top" :alt="rest.name" />
-            <div class="card-body">
-                <h2 class="card-text">{{ rest.rest_name }}</h2>
-                <h3>{{ rest.address }}</h3>
-            </div>
-        </div>
-    </div> -->
 </template>
 
 <style lang="scss"></style>
