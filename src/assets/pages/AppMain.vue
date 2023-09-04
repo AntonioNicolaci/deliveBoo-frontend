@@ -4,18 +4,14 @@ import AppTypeSelector from "./AppTypeSelector.vue";
 import AppRestaurantCard from "./AppRestaurantCard.vue";
 export default {
 
-  props: {
-    arrTypes: Object,
-    arrRest: Object,
-  },
-
-
   data() {
     return {
       linkImg: "",
       randomPerTe: "",
-      // restaurants: "",
-      arraTypes: [],
+      arrTypes: {},
+      arrRest: {},
+      resType: {},
+      arrPlate: {},
 
     };
   },
@@ -30,9 +26,18 @@ export default {
       this.type = type;
       // Esegui una ricerca in base al tipo di ristorante qui
     },
+    getData() {
+        axios.get("http://127.0.0.1:8000/api/data")
+          .then((response) => {
+            this.arrRest = response.data.restaurants
+            this.resType = response.data.res_type
+            this.arratypes = response.data.types
+            this.arrPlate = response.data.plates
+          })
+      }
   },
   created() {
-    // this.rndNumber();
+      this.getData();
   },
 
   components: {

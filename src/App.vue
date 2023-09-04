@@ -2,7 +2,6 @@
 import axios from "axios";
 import AppNav from "./assets/components/AppNav.vue";
 import AppJumbo from "./assets/components/AppJumbo.vue";
-import AppMain from "./assets/components/AppMain.vue";
 import AppFooter from "./assets/components/AppFooter.vue";
 
 export default {
@@ -11,10 +10,6 @@ export default {
     return {
       active: true,
       restaurants: "",
-      arrTypes: {},
-      arrRest: {},
-      resType: {},
-      arrPlate: {},
 
     };
   },
@@ -28,10 +23,6 @@ export default {
           this.arrPlate = response.data.plates
         })  
     },
-    // restSearch(type) {
-    //   this.type = type;
-    //   this.getRestaurants();
-    // },
   },
   created() {
     this.getData();
@@ -40,7 +31,6 @@ export default {
   components: {
     AppNav,
     AppJumbo,
-    AppMain,
     AppFooter,
   },
 };
@@ -49,7 +39,6 @@ export default {
 <template>
   <AppNav />
   <AppJumbo />
-  <AppMain :arrTypes="arrTypes" :arrRest="arrRest" />
   <router-view></router-view>
   <AppFooter />
   <!-- <div id="card">
