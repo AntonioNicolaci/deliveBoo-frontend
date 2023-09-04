@@ -4,4 +4,6 @@ import * as bootstrap from "bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { router } from "./router";
 
-createApp(App).use(router).mount("#app");
+createApp(App)
+    .use(router)
+    .mount("#app");
