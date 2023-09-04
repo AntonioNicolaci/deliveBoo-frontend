@@ -1,18 +1,18 @@
 <script>
 export default {
-    data() {
-        return {
-            arrRest: [],
-        }
+    props: {
+        restaurant: Object,
     },
 
-    methods: {
-        getRestaurants() {
-            axios.get("http://127.0.0.1:8000/api/restaurants").then((response) => {
-                this.arrRest = response.data;
-            });
-        },
+    data() {
+
+        return {
+
+        }
+
     },
+
+
 }
 </script>
 
@@ -21,8 +21,8 @@ export default {
         <div class="card border" style="width: 18rem">
             <img :src="rest.img" class="card-img-top" :alt="rest.name" />
             <div class="card-body">
-                <h2 class="card-text">{{ rest.rest_name }}</h2>
-                <h3>{{ rest.types }}</h3>
+                <h2 class="card-text">{{ restaurant.rest_name }}</h2>
+                <h3>{{ restaurant.types }}</h3>
             </div>
         </div>
     </div>
