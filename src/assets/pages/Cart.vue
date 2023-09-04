@@ -1,5 +1,5 @@
 <script>
-import ApOrder from "../components/AppOrder.vue"
+import AppOrder from "../components/AppOrder.vue"
 export default {
     data() {
         return {
