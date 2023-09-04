@@ -3,12 +3,10 @@ import axios from "axios";
 import AppTypeSelector from "./AppTypeSelector.vue";
 import AppRestaurantCard from "./AppRestaurantCard.vue";
 export default {
-
   props: {
     arrayTypes: Array,
     arrRest: Object,
   },
-
 
   data() {
     return {
@@ -16,7 +14,6 @@ export default {
       randomPerTe: "",
       // restaurants: "",
       arraTypes: [],
-
     };
   },
   methods: {
@@ -36,7 +33,6 @@ export default {
   },
 
   components: {
-
     AppTypeSelector,
     AppRestaurantCard,
   },
@@ -47,25 +43,34 @@ export default {
     <div class="container-type">
       <h1 class="font">Restaurants</h1>
       <div class="cont-type d-flex gap-4">
-        <AppTypeSelector v-for="singleType in arrayTypes" :key="singleType.id" :singleType="singleType" :active="true" />
+        <AppTypeSelector
+          v-for="singleType in arrayTypes"
+          :key="singleType.id"
+          :singleType="singleType"
+          :active="true"
+        />
       </div>
     </div>
-    <div class="cont-text" style="background: linear-gradient(267deg, #9F672E 2.83%, #37363D 97.17%);">
-      <h2 class="d-inline-block text-light">Per te: </h2>
+    <div
+      class="cont-text"
+      style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)"
+    >
+      <h2 class="d-inline-block text-light">Per te:</h2>
       <span class="text-light fs-5" style="">
         <!-- {{ arrayTypes[randomPerTe].description }} -->
       </span>
     </div>
     <div class="cont-card">
-      <AppRestaurantCard v-for="restaurant in arrRest" :key="restaurant.id" :restaurant="restaurant" />
+      <AppRestaurantCard
+        v-for="restaurant in arrRest"
+        :key="restaurant.id"
+        :restaurant="restaurant"
+      />
     </div>
   </div>
 </template>
 
-
-
-
-<style lang="scss">
+<style lang="scss" scoped>
 .container-fluid {
   padding: 3rem;
 }
@@ -90,8 +95,12 @@ export default {
 }
 
 .cont-card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   margin-top: 1.5rem;
-  padding-inline: 5rem;
+  padding: 5rem;
 }
 
 .border {
