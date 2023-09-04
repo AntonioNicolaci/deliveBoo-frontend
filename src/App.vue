@@ -11,21 +11,22 @@ export default {
     return {
       active: true,
       restaurants: "",
-      arrayTypes: [],
-      arrRest: [],
+      arrTypes: {},
+      arrRest: {},
+      resType: {},
+      arrPlate: {},
 
     };
   },
   methods: {
     getData() {
-      axios
-        .get("http://127.0.0.1:8000/api/data", {
-        })
+      axios.get("http://127.0.0.1:8000/api/data")
         .then((response) => {
-          this.arrRest = response.data.restaurants;
-          this.arrayTypes = response.data.types;
-        });
-
+          this.arrRest = response.data.restaurants
+          this.resType = response.data.res_type
+          this.arratypes = response.data.types
+          this.arrPlate = response.data.plates
+        })  
     },
     // restSearch(type) {
     //   this.type = type;
@@ -48,7 +49,7 @@ export default {
 <template>
   <AppNav />
   <AppJumbo />
-  <AppMain :arrayTypes="arrayTypes" :arrRest="arrRest" />
+  <AppMain :arrTypes="arrTypes" :arrRest="arrRest" />
   <router-view></router-view>
   <AppFooter />
   <!-- <div id="card">
