@@ -1,7 +1,7 @@
 <script>
 export default {
     props: {
-        restaurant: Object,
+        restaurant: Array,
     },
 
     data() {
