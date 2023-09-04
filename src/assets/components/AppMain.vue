@@ -35,7 +35,7 @@ export default {
   },
   components: {
     AppTypeSelector,
-    AppRestaurantCard
+    AppRestaurantCard,
   },
 };
 </script>
@@ -55,7 +55,7 @@ export default {
       </span>
     </div>
     <div class="cont-card">
-      <AppRestaurantCard v-for="rest in   arrRest  " :key="rest" />
+      <AppRestaurantCard v-for="rest in arrRest" :key="rest" />
     </div>
   </div>
 </template>
