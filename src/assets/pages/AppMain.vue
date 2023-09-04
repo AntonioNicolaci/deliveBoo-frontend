@@ -1,19 +1,16 @@
 <script>
 import axios from "axios";
-import AppTypeSelector from "./AppTypeSelector.vue";
-import AppRestaurantCard from "./AppRestaurantCard.vue";
+import AppTypeSelector from "../components/AppTypeSelector.vue";
+import AppRestaurantCard from "../components/AppRestaurantCard.vue";
 export default {
-  props: {
-    arrayTypes: Array,
-    arrRest: Object,
-  },
-
   data() {
     return {
       linkImg: "",
       randomPerTe: "",
-      // restaurants: "",
-      arraTypes: [],
+      arrTypes: {},
+      arrRest: {},
+      resType: {},
+      arrPlate: {},
     };
   },
   methods: {
@@ -27,9 +24,17 @@ export default {
       this.type = type;
       // Esegui una ricerca in base al tipo di ristorante qui
     },
+    getData() {
+      axios.get("http://127.0.0.1:8000/api/data").then((response) => {
+        this.arrRest = response.data.restaurants;
+        this.resType = response.data.res_type;
+        this.arrTypes = response.data.types;
+        this.arrPlate = response.data.plates;
+      });
+    },
   },
   created() {
-    this.rndNumber();
+    this.getData();
   },
 
   components: {
@@ -44,7 +49,7 @@ export default {
       <h1 class="font">Restaurants</h1>
       <div class="cont-type d-flex gap-4">
         <AppTypeSelector
-          v-for="singleType in arrayTypes"
+          v-for="singleType in arrTypes"
           :key="singleType.id"
           :singleType="singleType"
           :active="true"
@@ -70,7 +75,7 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .container-fluid {
   padding: 3rem;
 }
@@ -95,12 +100,12 @@ export default {
 }
 
 .cont-card {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
   margin-top: 1.5rem;
-  padding: 5rem;
+  padding-inline: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  justify-content: center;
 }
 
 .border {

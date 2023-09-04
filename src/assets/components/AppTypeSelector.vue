@@ -1,25 +1,27 @@
 <script>
 export default {
     props: {
-        singleType: Object,
+        singleType: Array,
         active: Boolean,
     },
     data() {
         return {
             actived: false,
-            linkImg: "../img/" + this.singleType.img,
+            img: "/" + this.singleType.img,
         }
     },
 }
+
 </script>
 <template>
+    <h1>{{ console.log(singleType) }}</h1>
     <template v-if="active == false">
-        <img :src="singleType.img" :alt="singleType.name">
         <div class="cont-type d-flex align-items-end justify-content-center">
             {{ singleType.name }}
         </div>
     </template>
     <template v-else-if="active == true">
+        <img :src=img :alt="singleType.name">
         <div class="cont-type d-flex align-items-end justify-content-center">
             {{ singleType.name }}
         </div>
@@ -36,5 +38,9 @@ export default {
 .cont-type:hover {
     background-color: rgb(55, 54, 60);
     color: white;
+}
+img {
+    width: 50px;
+    height: 50px;
 }
 </style>
