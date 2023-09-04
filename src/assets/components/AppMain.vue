@@ -5,7 +5,7 @@ import AppRestaurantCard from "./AppRestaurantCard.vue";
 export default {
 
   props: {
-    arrayTypes: Array,
+    arrTypes: Object,
     arrRest: Object,
   },
 
@@ -32,7 +32,7 @@ export default {
     },
   },
   created() {
-    this.rndNumber();
+    // this.rndNumber();
   },
 
   components: {
@@ -47,7 +47,7 @@ export default {
     <div class="container-type">
       <h1 class="font">Restaurants</h1>
       <div class="cont-type d-flex gap-4">
-        <AppTypeSelector v-for="singleType in arrayTypes" :key="singleType.id" :singleType="singleType" :active="true" />
+        <AppTypeSelector v-for="singleType in arrTypes" :key="singleType.id" :singleType="singleType" :active="true" />
       </div>
     </div>
     <div class="cont-text" style="background: linear-gradient(267deg, #9F672E 2.83%, #37363D 97.17%);">
