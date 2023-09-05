@@ -46,31 +46,19 @@ export default {
 <template>
   <div class="container-fluid">
     <div class="container-type">
-      <h1 class="font">Restaurants</h1>
+      <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
       <div class="cont-type d-flex gap-4">
-        <AppTypeSelector
-          v-for="singleType in arrTypes"
-          :key="singleType.id"
-          :singleType="singleType"
-          :active="true"
-        />
+        <AppTypeSelector v-for="singleType in arrTypes" :key="singleType.id" :singleType="singleType" :active="true" />
       </div>
     </div>
-    <div
-      class="cont-text"
-      style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)"
-    >
+    <div class="cont-text" style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)">
       <h2 class="d-inline-block text-light">Per te:</h2>
       <span class="text-light fs-5" style="">
         <!-- {{ arrayTypes[randomPerTe].description }} -->
       </span>
     </div>
     <div class="cont-card">
-      <AppRestaurantCard
-        v-for="restaurant in arrRest"
-        :key="restaurant.id"
-        :restaurant="restaurant"
-      />
+      <AppRestaurantCard v-for="restaurant in arrRest" :key="restaurant.id" :restaurant="restaurant" />
     </div>
   </div>
 </template>
@@ -87,9 +75,10 @@ export default {
   background-color: rgb(231, 165, 80);
 }
 
-.font {
-  font-size: 4rem;
+.title {
+  font-size: 3rem;
   color: rgb(55, 54, 60);
+  padding: 1.5rem 2rem;
 }
 
 .cont-text {
