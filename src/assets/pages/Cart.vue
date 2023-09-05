@@ -4,20 +4,32 @@ export default {
     data() {
         return {
             cartFull: false,
-            arrCart: [],
+            arrCart: {},
+            plates: {},
         }
     },
     methods: {
         searchData() {
+            console.log("siamo dentro");
             if(localStorage.getItem("cart") !== null) {
-                this.cartFull = true; 
-            } else {
-                this.arrCart = localStorage.getItem("cart")
+                this.cartFull = true;
+
+                console.log(localStorage.getItem("cart"))
+                let cart = JSON.parse(localStorage.getItem("cart"))
+                this.arrCart = cart
             }
+        },
+        getData() {
+            axios.get("http://127.0.0.1:8000/api/data")
+                .then((response) => {
+                    this.plates = response.data.plates
+                    console.log(this.plates);
+                })
         }
     },
     created () {
         this.searchData();
+        this.getData()
     },
 
     components: {
@@ -41,7 +53,7 @@ export default {
                     <div class="fs-4 col-2 fw-bold">Totale</div>
                     <div class="fs-4 col-1 fw-bold">X</div>
                 </div>
-                <AppOrder class="d-flex flex-row gap-5" v-for="cart in arrCart" :cart="cart"/>
+                <AppOrder v-for="cart in arrCart" :cart="cart" :plate="plates[cart.id - 1]"/>
             </div>
         </div>
     </template>
