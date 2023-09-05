@@ -114,7 +114,14 @@ export default {
   display: flex;
   flex-wrap: wrap;
   gap: 4rem;
-  justify-content: center;
+  margin: auto;
+  // justify-content: center;
+}
+
+.cont-card::after {
+content: '';
+flex: auto;
+justify-content: center;
 }
 
 .border {
