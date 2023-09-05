@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-    <nav class="py-4">
+    <nav>
         <div class="container d-flex align-items-center justify-content-between ">
             <div class="logo">
                 <img src="../img/coloratofinale_360.png" alt="">
@@ -48,6 +48,11 @@ export default {
 
 nav {
     background-color: #E6E0D7;
+    height: 5rem;
+}
+
+.logo img {
+    height: 5rem;
 }
 
 #btn-registrati,
@@ -58,8 +63,4 @@ nav {
     border-radius: 10px;
 }
 
-.jumbo img {
-    width: 100%;
-    background-size: cover;
-}
 </style>
