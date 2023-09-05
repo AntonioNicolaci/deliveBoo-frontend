@@ -7,6 +7,26 @@ export default {
     };
   },
 
+  computed: {
+    uniqueRestaurants() {
+      // Raggruppa i piatti per ristorante
+      const restaurantMap = new Map();
+      this.restShow.forEach((item) => {
+        const { restaurant_id, rest_name, address } = item;
+        if (!restaurantMap.has(restaurant_id)) {
+          restaurantMap.set(restaurant_id, {
+            id: restaurant_id,
+            rest_name,
+            address,
+            plates: [],
+          });
+        }
+        restaurantMap.get(restaurant_id).plates.push(item);
+      });
+      return Array.from(restaurantMap.values());
+    },
+  },
+
   created() {
     axios
       .get(
@@ -19,18 +39,59 @@ export default {
 </script>
 
 <template>
-  <div class="rest-container" v-for="rest in restShow" :key="rest.id">
-    <div class="restaurant">
-      <!-- <img :src="restShow.img" :alt="restShow.rest_name" /> -->
-      <h1>{{ rest.rest_name }}</h1>
-      <p>{{ rest.address }}</p>
+  <!-- <div
+    class="rest-container"
+    v-for="restaurant in uniqueRestaurants"
+    :key="restaurant.id"
+  >
+    <div>
+      <div class="restaurant">
+        <img :src="restShow.img" :alt="restShow.rest_name" />
+        <h1>{{ restaurant.rest_name }}</h1>
+        <p>{{ restaurant.address }}</p>
+      </div>
+      <div class="plates" v-for="plate in restaurant.plates" :key="plate.id">
+        <h2>{{ plate.name }}</h2>
+        <div>ingredienti: {{ plate.ingredients }}</div>
+        <div>{{ plate.price }}€</div>
+      </div>
     </div>
-    <div class="plates">
-      <h2>{{ rest.name }}</h2>
-      <div>ingredienti: {{ rest.ingredients }}</div>
-      <div>{{ rest.price }}€</div>
+  </div> -->
+  <div
+    class="rest-container"
+    v-for="restaurant in uniqueRestaurants"
+    :key="restaurant.id"
+  >
+    <div class="restName">
+      <h1>{{ restaurant.rest_name }}</h1>
+      <p>{{ restaurant.address }}</p>
+    </div>
+
+    <div class="dish-container">
+      <div
+        class="card plates"
+        style="width: 18rem"
+        v-for="plate in restaurant.plates"
+        :key="plate.id"
+      >
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{ plate.name }}</li>
+          <li class="list-group-item">ingredienti: {{ plate.ingredients }}</li>
+          <li class="list-group-item">{{ plate.price }}€</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.dish-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  align-items: center;
+  justify-content: flex-start;
+  padding-inline: 3rem;
+  margin: 1rem auto;
+}
+</style>
