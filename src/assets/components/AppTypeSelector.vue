@@ -23,7 +23,7 @@ export default {
         <div class="card">
             <img :src="img" :alt="singleType.name" class="card-image">
             <div class="content">
-                <div class="font">{{ singleType.name }}</div>
+                <div class="type-name">{{ singleType.name }}</div>
             </div>
         </div>
     </template>
@@ -41,12 +41,12 @@ export default {
     color: white;
 }
 
-.font {
+.type-name {
     font-size: 1rem;
+    color: rgb(55, 54, 60);
 }
 
 img {
-    // width: 300px;
     height: calc(100% / 2);
     background-size: cover;
     background-position: center;
