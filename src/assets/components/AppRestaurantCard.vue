@@ -26,7 +26,14 @@ export default {
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">
-              {{ restaurant.rest_name }}
+              <router-link
+                :to="{
+                  name: 'restaurants.show',
+                  params: { restaurant: restaurant.id },
+                }"
+              >
+                {{ restaurant.rest_name }}
+              </router-link>
             </h5>
             <p class="card-text">{{ restaurant.address }}</p>
           </div>
@@ -34,17 +41,6 @@ export default {
       </div>
     </div>
   </div>
-  <!-- 
-
-    <div class="cont-card">
-        <div class="card border" style="width: 18rem">
-            <img :src="rest.img" class="card-img-top" :alt="rest.name" />
-            <div class="card-body">
-                <h2 class="card-text">{{ rest.rest_name }}</h2>
-                <h3>{{ rest.address }}</h3>
-            </div>
-        </div>
-    </div> -->
 </template>
 
 <style lang="scss" scoped>
