@@ -8,12 +8,11 @@ export default {
   },
 
   created() {
-    //console.log("ciao");
     axios
       .get(
-        "http://127.0.0.1:8000/api/restaurants/" + this.$route.params.restaurant
+        "http://127.0.0.1:8000/api/restaurants/" +
+          String(this.$route.params.restaurant)
       )
-      //.then((response) => console.log(response));
       .then((response) => (this.restShow = response.data));
   },
 };
@@ -28,8 +27,8 @@ export default {
     </div>
     <div class="plates">
       <h2>{{ rest.name }}</h2>
-      <div>{{ rest.ingredients }}</div>
-      <div>{{ rest.price }}</div>
+      <div>ingredienti: {{ rest.ingredients }}</div>
+      <div>{{ rest.price }}€</div>
     </div>
   </div>
 </template>
