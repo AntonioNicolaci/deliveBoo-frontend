@@ -47,7 +47,7 @@ export default {
   <div class="container-fluid">
     <div class="container-type">
       <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
-      <div class="cont-type d-flex gap-4">
+      <div class="cont-type">
         <AppTypeSelector v-for="singleType in arrTypes" :key="singleType.id" :singleType="singleType" :active="true" />
       </div>
     </div>
@@ -80,6 +80,19 @@ export default {
   color: rgb(55, 54, 60);
   padding: 1.5rem 2rem;
 }
+
+// .cont-type {
+//   height: 200px;
+//   background: white;
+//   width: 150px;
+//   border-radius: 4rem;
+// }
+
+// .cont-type:hover {
+//   background-color: rgb(55, 54, 60);
+//   color: white;
+// }
+
 
 .cont-text {
   padding: 1.5rem;
