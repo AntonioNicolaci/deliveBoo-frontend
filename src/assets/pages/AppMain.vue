@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import AppTypeSelector from "../components/AppTypeSelector.vue";
+import AppType from "../components/AppType.vue";
 import AppRestaurantCard from "../components/AppRestaurantCard.vue";
 export default {
   data() {
@@ -13,9 +13,20 @@ export default {
       arrPlate: {},
     };
   },
+  components: {
+    AppType,
+    AppRestaurantCard,
+  },
   methods: {
+    // printSuca(id) {
+    //   console.log(id);
+    // },
+    daje() {
+      console.log(Object.keys(this.arrTypes).length);
+    },
     rndNumber() {
-      this.randomPerTe = Math.floor(Math.random() * this.arrayTypes.length);
+      this.randomPerTe = (Math.floor(Math.random() * Object.keys(this.arrTypes).length) + 1);
+      console.log(this.randomPerTe);
     },
     addImg(img) {
       return `assets/img/${img}`;
@@ -30,16 +41,12 @@ export default {
         this.resType = response.data.res_type;
         this.arrTypes = response.data.types;
         this.arrPlate = response.data.plates;
+        this.rndNumber();
       });
     },
   },
   created() {
     this.getData();
-  },
-
-  components: {
-    AppTypeSelector,
-    AppRestaurantCard,
   },
 };
 </script>
@@ -48,11 +55,13 @@ export default {
     <div class="container-type">
       <h1 class="font">Restaurants</h1>
       <div class="cont-type d-flex gap-4">
-        <AppTypeSelector
+        <AppType
           v-for="singleType in arrTypes"
           :key="singleType.id"
           :singleType="singleType"
           :active="true"
+          :array="array"
+          @click="printSuca(id)"
         />
       </div>
     </div>
@@ -60,9 +69,9 @@ export default {
       class="cont-text"
       style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)"
     >
-      <h2 class="d-inline-block text-light">Per te:</h2>
+      <h2 class="d-inline-block text-light">Per te:</h2> 
       <span class="text-light fs-5" style="">
-        <!-- {{ arrayTypes[randomPerTe].description }} -->
+        {{ arrTypes[this.randomPerTe].description }}
       </span>
     </div>
     <div class="cont-card">
