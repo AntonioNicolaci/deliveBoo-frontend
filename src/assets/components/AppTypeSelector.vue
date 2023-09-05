@@ -14,7 +14,6 @@ export default {
 
 </script>
 <template>
-    <h1>{{ console.log(singleType) }}</h1>
     <template v-if="active == false">
         <div class="card">
             <div class="content">{{ singleType.name }}</div>
