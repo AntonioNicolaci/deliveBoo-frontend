@@ -77,7 +77,9 @@ export default {
         <ul class="list-group list-group-flush">
           <li class="list-group-item">{{ plate.name }}</li>
           <li class="list-group-item">ingredienti: {{ plate.ingredients }}</li>
-          <li class="list-group-item">€ {{Math.round(plate.price / 100).toFixed(2)}}</li>
+          <li class="list-group-item">
+            € {{ Math.round(plate.price / 100).toFixed(2) }}
+          </li>
         </ul>
       </div>
     </div>
