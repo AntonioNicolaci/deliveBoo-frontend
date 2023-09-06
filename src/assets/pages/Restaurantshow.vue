@@ -94,6 +94,7 @@ export default {
         <p>{{ restaurant.address }}</p>
       </div>
     </div>
+
     <div class="dish-container">
       <div class="card mb-3 plates" v-for="plate, key in restaurant.plates" :key="plate.id">
         <div class="row g-0 dish-card">
@@ -200,7 +201,8 @@ export default {
 
     .add {
       flex: 1 0 0;
-      margin-left: 5rem;
+      display:flex;
+      justify-content: center;
     }
   }
 }
