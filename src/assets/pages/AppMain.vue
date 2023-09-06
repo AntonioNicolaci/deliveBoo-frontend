@@ -25,7 +25,8 @@ export default {
       console.log(Object.keys(this.arrTypes).length);
     },
     rndNumber() {
-      this.randomPerTe = (Math.floor(Math.random() * Object.keys(this.arrTypes).length) + 1);
+      this.randomPerTe =
+        Math.floor(Math.random() * Object.keys(this.arrTypes).length) + 1;
       console.log(this.randomPerTe);
     },
     addImg(img) {
@@ -69,7 +70,7 @@ export default {
       class="cont-text"
       style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)"
     >
-      <h2 class="d-inline-block text-light">Per te:</h2> 
+      <h2 class="d-inline-block text-light">Per te:</h2>
       <span class="text-light fs-5" style="">
         {{ arrTypes[this.randomPerTe].description }}
       </span>

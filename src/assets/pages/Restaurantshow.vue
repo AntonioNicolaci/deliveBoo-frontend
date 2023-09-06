@@ -7,17 +7,24 @@ export default {
     };
   },
 
+  methods: {
+    getRestaurantImageUrl(img) {
+      return `/img/${img}`;
+    },
+  },
+
   computed: {
     uniqueRestaurants() {
       // Raggruppa i piatti per ristorante
       const restaurantMap = new Map();
       this.restShow.forEach((item) => {
-        const { restaurant_id, rest_name, address } = item;
+        const { restaurant_id, rest_name, address, img } = item;
         if (!restaurantMap.has(restaurant_id)) {
           restaurantMap.set(restaurant_id, {
             id: restaurant_id,
             rest_name,
             address,
+            img,
             plates: [],
           });
         }
@@ -39,59 +46,113 @@ export default {
 </script>
 
 <template>
-  <!-- <div
-    class="rest-container"
-    v-for="restaurant in uniqueRestaurants"
-    :key="restaurant.id"
-  >
-    <div>
-      <div class="restaurant">
-        <img :src="restShow.img" :alt="restShow.rest_name" />
-        <h1>{{ restaurant.rest_name }}</h1>
-        <p>{{ restaurant.address }}</p>
-      </div>
-      <div class="plates" v-for="plate in restaurant.plates" :key="plate.id">
-        <h2>{{ plate.name }}</h2>
-        <div>ingredienti: {{ plate.ingredients }}</div>
-        <div>{{ plate.price }}€</div>
-      </div>
-    </div>
-  </div> -->
   <div
     class="rest-container"
     v-for="restaurant in uniqueRestaurants"
     :key="restaurant.id"
   >
     <div class="restName">
-      <h1>{{ restaurant.rest_name }}</h1>
-      <p>{{ restaurant.address }}</p>
+      <div class="restLogo">
+        <img :src="getRestaurantImageUrl(restaurant.img)" alt="" />
+      </div>
+      <div class="title">
+        <h1>{{ restaurant.rest_name }}</h1>
+        <p>{{ restaurant.address }}</p>
+      </div>
     </div>
 
     <div class="dish-container">
       <div
-        class="card plates"
-        style="width: 18rem"
+        class="card mb-3 plates"
         v-for="plate in restaurant.plates"
         :key="plate.id"
       >
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">{{ plate.name }}</li>
-          <li class="list-group-item">ingredienti: {{ plate.ingredients }}</li>
-          <li class="list-group-item">€ {{Math.round(plate.price / 100).toFixed(2)}}</li>
-        </ul>
+        <div class="row g-0 dish-card">
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title cardText">{{ plate.name }}</h5>
+              <p class="card-text cardText ingredients">
+                {{ plate.ingredients }}
+              </p>
+              <p class="card-text cardText">
+                € {{ Math.round(plate.price / 100).toFixed(2) }}
+              </p>
+              <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+            </div>
+          </div>
+
+          <div class="col-md-4 add">Add</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.dish-container {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1100px;
-  align-items: center;
-  justify-content: flex-start;
-  padding-inline: 3rem;
-  margin: 1rem auto;
+.rest-container {
+  background-color: #e6e0d7;
+  padding: 1rem 0.9rem;
+  .restName {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 3rem;
+    padding: 2rem;
+    background-color: rgb(231, 165, 80);
+
+    .restLogo {
+      flex: 0 0 40%;
+
+      img {
+        width: 100%;
+        border-radius: 500rem;
+      }
+    }
+
+    .title {
+      flex: 0 0 60%;
+      text-align: center;
+    }
+  }
+
+  .dish-container {
+    max-width: 1200px;
+    padding: 0.8rem;
+    margin: 1rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0.5rem;
+  }
+
+  .plates {
+    flex: 0 0 45%;
+    border: 1px solid black;
+    border-radius: 2.5rem;
+    margin-right: 2rem;
+    padding: 1rem;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .dish-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .cardText {
+      flex: 0 0 60%;
+    }
+
+    .ingredients {
+      font-size: 0.8rem;
+    }
+
+    .add {
+      flex: 1 0 0;
+      margin-left: 5rem;
+    }
+  }
 }
 </style>
