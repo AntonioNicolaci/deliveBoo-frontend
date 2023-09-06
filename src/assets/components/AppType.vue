@@ -12,12 +12,12 @@ export default {
             filteredRest: [],
         }
     },
-        methods: {
-            printID(id) {
-                this.filteredRest = [];
-                console.log(id);
-                this.$emit("onClick", {array: this.filteredRest.push(id)});
-                console.log(this.filteredRest);
+    methods: {
+        printID(id) {
+            this.filteredRest = [];
+            console.log(id);
+            this.$emit("onClick", { array: this.filteredRest.push(id) });
+            console.log(this.filteredRest);
         },
     },
 }
