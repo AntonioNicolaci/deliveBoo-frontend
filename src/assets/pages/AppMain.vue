@@ -7,10 +7,14 @@ export default {
     return {
       linkImg: "",
       randomPerTe: "",
+      randomResoult: "",
       arrTypes: {},
       arrRest: {},
       resType: {},
       arrPlate: {},
+      filteredRest: {},
+      search: "Osteria",
+      // filteredRest: arrRest.types.includes(3),
     };
   },
   components: {
@@ -18,15 +22,9 @@ export default {
     AppRestaurantCard,
   },
   methods: {
-    // printSuca(id) {
-    //   console.log(id);
-    // },
-    daje() {
-      console.log(Object.keys(this.arrTypes).length);
-    },
     rndNumber() {
       this.randomPerTe = (Math.floor(Math.random() * Object.keys(this.arrTypes).length) + 1);
-      console.log(this.randomPerTe);
+      this.randomResoult = this.arrTypes[this.randomPerTe].description;
     },
     addImg(img) {
       return `assets/img/${img}`;
@@ -41,9 +39,21 @@ export default {
         this.resType = response.data.res_type;
         this.arrTypes = response.data.types;
         this.arrPlate = response.data.plates;
+        this.filteredRest = this.arrRest;
+
+        console.log(this.arrRest[0].rest_name);
+        console.log(this.filteredRest);
         this.rndNumber();
       });
     },
+ 
+//     printID(id) {
+//         this.filteredRest = [];
+//         console.log(id);
+//         this.$emit("onClick", {array: this.filteredRest.push(id)});
+//         console.log(this.filteredRest);
+// },
+
   },
   created() {
     this.getData();
@@ -57,11 +67,10 @@ export default {
       <div class="cont-type d-flex gap-4">
         <AppType
           v-for="singleType in arrTypes"
-          :key="singleType.id"
+          :id="singleType.id"
           :singleType="singleType"
           :active="true"
-          :array="array"
-          @click="printSuca(id)"
+          @click="printID(singleType.id)"
         />
       </div>
     </div>
@@ -71,14 +80,14 @@ export default {
     >
       <h2 class="d-inline-block text-light">Per te:</h2> 
       <span class="text-light fs-5" style="">
-        {{ arrTypes[this.randomPerTe].description }}
+        {{ this.randomResoult }}
       </span>
     </div>
     <div class="cont-card">
       <AppRestaurantCard
-        v-for="restaurant in arrRest"
+        v-for="restaurant in filteredRest"
         :key="restaurant.id"
-        :restaurant="restaurant"
+        
       />
     </div>
   </div>

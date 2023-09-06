@@ -4,39 +4,29 @@ export default {
         singleType: Array,
         active: Boolean,
     },
-    emits: ['onClick'],
     data() {
         return {
             actived: false,
             img: "/" + this.singleType.img,
-            filteredRest: [],
         }
-    },
-        methods: {
-            printID(id) {
-                this.filteredRest = [];
-                console.log(id);
-                this.$emit("onClick", {array: this.filteredRest.push(id)});
-                console.log(this.filteredRest);
-        },
     },
 }
 
 </script>
 <template>
-    <template v-if="active == false">
-        <div @click="printID(singleType.id)" class="card">
+    <button v-if="active == false">
+        <div class="card">
             <div class="content">{{ singleType.name }}</div>
         </div>
-    </template>
-    <template v-else-if="active == true">
-        <div @click="printID(singleType.id)" class="card">
+    </button>
+    <button v-else-if="active == true">
+        <div class="card">
             <img :src="img" :alt="singleType.name" class="card-image">
             <div class="content">
                 <div class="font">{{ singleType.name }}</div>
             </div>
         </div>
-    </template>
+    </button>
 </template>
 <style lang="scss" scoped>
 .cont-type {
