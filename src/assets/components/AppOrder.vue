@@ -35,7 +35,7 @@ export default {
             {{ plate.price }}
         </div>
         <div class="col-2">
-            {{ cart.quant }}
+            {{ cart.quantit }}
         </div>
         <div class="col-2">
             <!-- {{ price. }} -->

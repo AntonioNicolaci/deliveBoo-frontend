@@ -8,6 +8,26 @@ export default {
     };
   },
   methods: {
+    setListPlate() {
+      if (localStorage.getItem("cart") !== null) {
+        this.listPlate = JSON.parse(localStorage.getItem("cart"))
+      } else {
+        this.restShow.forEach(element => {
+          this.listPlate.push({ id: element.id, quantit: 0 })
+        })
+      }
+    },
+    getPaltes() {
+      axios
+        .get(
+          "http://127.0.0.1:8000/api/restaurants/" +
+          String(this.$route.params.restaurant)
+        )
+        .then(response => (
+          this.restShow = response.data,
+          this.setListPlate()
+        ));
+    },
     destroyStorage() {
       localStorage.clear()
       console.log("Sono Morte, il distruttore di mondi");
@@ -18,7 +38,8 @@ export default {
       })
 
       if (sign == "-") {
-        const quantit = this.listPlate[key].quantit--
+        let quantit = this.listPlate[key].quantit
+        quantit--
         if (quantit <= -1) {
           this.listPlate[key].quantit = 0
         } else {
@@ -51,26 +72,9 @@ export default {
       return Array.from(restaurantMap.values());
     },
   },
-  watch: {
-    modPlate(newP, oldP){
-      localStorage.setItem("cart", this.modPlate)
-      console.log(localStorage.getItem("cart"));
-    }
-  },
 
   created() {
-    axios
-      .get(
-        "http://127.0.0.1:8000/api/restaurants/" +
-        String(this.$route.params.restaurant)
-      )
-      .then(response => (
-        this.restShow = response.data,
-        this.restShow.forEach(element => {
-          this.listPlate.push({id: element.id, quantit: 0})
-          console.log("s");
-        })
-        ));
+    this.getPaltes()
   },
 };
 </script>
@@ -112,8 +116,7 @@ export default {
             <input type="number" :name="plate.id" :id="plate.id" value="'modplate' + 'plate.id'">
           </li>
           <li class="list-group-item" style="background-color: burlywood;">
-            <div style="width:30px; height: 30px; background-color: black; margin: 5px"
-              @click="addPlate(plate.id)"></div>
+            <div style="width:30px; height: 30px; background-color: black; margin: 5px" @click="addPlate(plate.id)"></div>
             <div class="d-flex justify-content-center align-items-center"
               style="stroke-width: 1px; border:1px solid #37363D; width: 92px; height: 52px; border-radius: 5px;">
               <div class="d-flex justify-content-center align-items-center"
@@ -140,71 +143,13 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.rest-container {
-  background-color: #e6e0d7;
-  padding: 1rem 0.9rem;
-  .restName {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 3rem;
-    padding: 2rem;
-    background-color: rgb(231, 165, 80);
-
-    .restLogo {
-      flex: 0 0 40%;
-
-      img {
-        width: 100%;
-        border-radius: 500rem;
-      }
-    }
-
-    .title {
-      flex: 0 0 60%;
-      text-align: center;
-    }
-  }
-
-  .dish-container {
-    max-width: 1200px;
-    padding: 0.8rem;
-    margin: 1rem auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    justify-content: flex-start;
-    padding: 0.5rem;
-  }
-
-  .plates {
-    flex: 0 0 45%;
-    border: 1px solid black;
-    border-radius: 2.5rem;
-    margin-right: 2rem;
-    padding: 1rem;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-    background-color: #e6e0d7;
-  }
-
-  .dish-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    .cardText {
-      flex: 0 0 60%;
-    }
-
-    .ingredients {
-      font-size: 0.8rem;
-    }
-
-    .add {
-      flex: 1 0 0;
-      margin-left: 5rem;
-    }
-  }
+.dish-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  align-items: center;
+  justify-content: flex-start;
+  padding-inline: 3rem;
+  margin: 1rem auto;
 }
 </style>
