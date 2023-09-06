@@ -47,7 +47,7 @@ export default {
   <div class="container-fluid">
     <div class="container-type">
       <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
-      <div class="cont-type">
+      <div class="cont-type col-lg-12 col-md-8 ">
         <AppTypeSelector v-for="singleType in arrTypes" :key="singleType.id" :singleType="singleType" :active="true" />
       </div>
     </div>
@@ -100,5 +100,97 @@ export default {
 
 .border {
   border-radius: 4rem;
+}
+
+@media(max-width: 1269px) {
+
+  .cont-type {
+    width: 100%;
+  }
+
+}
+
+@media(max-width: 1335px) {
+  .cont-type {
+    display: flex;
+
+    background-size: cover;
+    width: 1250px;
+  }
+
+
+  @media(max-width: 1290px) {
+    .cont-type {
+      display: flex;
+      background-size: cover;
+      width: 1200px;
+
+    }
+  }
+
+  @media(max-width: 1241px) {
+    .cont-type {
+      display: flex;
+      background-size: cover;
+      width: 1150px;
+
+
+    }
+  }
+
+  @media(max-width: 1200px) {
+    .cont-type {
+      display: flex;
+      background-size: cover;
+      width: 1100px;
+
+
+    }
+  }
+
+  @media(max-width: 1139px) {
+    .cont-type {
+      display: flex;
+      background-size: cover;
+      width: 1070px;
+
+
+    }
+  }
+
+
+  @media(max-width: 1100px) {
+    .cont-type {
+      display: flex;
+      background-size: cover;
+      width: 1030px;
+
+
+    }
+  }
+
+  @media(max-width: 1060px) {
+    .cont-type {
+      display: flex;
+      background-size: cover;
+      width: 990px;
+
+
+    }
+  }
+
+  @media(max-width: 1031px) {
+    .cont-type {
+      display: flex;
+      flex-wrap: wrap;
+      background-size: contain;
+      width: 950px;
+
+
+
+    }
+  }
+
+
 }
 </style>
