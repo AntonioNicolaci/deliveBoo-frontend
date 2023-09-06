@@ -14,32 +14,33 @@ export default {
 
 <template>
   <div class="card-gap">
-    <div class="card mb-3">
-      <div class="row g-0">
-        <div class="col-md-4 cont-img">
-          <img
-            :src="img"
-            class="img-fluid rounded-start img"
-            :alt="restaurant.name"
-          />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">
-              <router-link
-                :to="{
-                  name: 'restaurants.show',
-                  params: { restaurant: restaurant.id },
-                }"
-              >
+    <router-link
+      :to="{
+        name: 'restaurants.show',
+        params: { restaurant: restaurant.id },
+      }"
+      class="card-text"
+    >
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4 cont-img">
+            <img
+              :src="img"
+              class="img-fluid rounded-start img"
+              :alt="restaurant.name"
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">
                 {{ restaurant.rest_name }}
-              </router-link>
-            </h5>
-            <p class="card-text">{{ restaurant.address }}</p>
+              </h5>
+              <p class="card-text">{{ restaurant.address }}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -54,4 +55,9 @@ export default {
 //     background-position: center;
 //   }
 // }
+
+.card-text {
+  text-decoration: none;
+  color: black;
+}
 </style>
