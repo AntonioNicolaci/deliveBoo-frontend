@@ -15,8 +15,8 @@ export default {
 </script>
 <template>
     <template v-if="active == false">
-        <div class="container-card">
-            <div class="card">
+        <div class="container-fluid">
+            <div class="card col-lg-12 col-md-9 col-sm-6 col-xs-3">
                 <img :src="img" :alt="singleType.name" class="card-image">
                 <div class="content">{{ singleType.name }}</div>
             </div>
@@ -24,8 +24,8 @@ export default {
 
     </template>
     <template v-else-if="active == true">
-        <div class="container-card">
-            <div class="card">
+        <div class="container-fluid">
+            <div class="card col-lg-12 col-md-9 col-sm-6 col-xs-3">
                 <img :src="img" :alt="singleType.name" class="card-image">
                 <div class="content">
                     <div class="type-name">{{ singleType.name }}</div>
@@ -36,66 +36,69 @@ export default {
     </template>
 </template>
 <style lang="scss" scoped>
-@media (min-width: 1140px) {
-    .card {
-        width: calc(100% / 13);
-        border-radius: 2rem;
+.container-fluid {
+    width: 100%;
+}
 
-        img {
-            background-size: cover;
-            height: 70%;
-            border-top-right-radius: 2rem;
-            border-top-left-radius: 2rem;
-        }
+.card {
+    border-radius: 2rem;
+    height: 200px;
 
-        .content {
-            font-size: 1rem;
-            font-weight: 500;
-            text-align: center;
-            padding-top: 1rem;
-        }
+    img {
+        background-size: cover;
+        height: 70%;
+        border-top-right-radius: 2rem;
+        border-top-left-radius: 2rem;
     }
 
-    .card:hover {
-        background-color: rgb(55, 54, 60);
-        color: white;
+    .content {
+        font-size: 1rem;
+        font-weight: 500;
+        text-align: center;
+        padding-top: 1rem;
     }
 }
 
-@media (max-width: 768px) {
-
-    .container-card {
-        // display: flex;
-        flex-wrap: wrap;
-
-    }
-
-    .card {
-        display: flex;
-        flex-direction: row;
-        border-radius: 2rem;
-        height: 80px;
-        width: calc((100% / 3) - 2rem);
-
-        img {
-            background-size: cover;
-            background-position: center;
-            width: 30%;
-            height: 100%;
-            border-bottom-left-radius: 2rem;
-            border-top-left-radius: 2rem;
-        }
-
-        .content {
-            font-size: 1rem;
-            font-weight: 500;
-            text-align: center;
-            align-self: center;
-            justify-self: flex-end;
-            padding-inline: .5rem;
-        }
-    }
+.card:hover {
+    background-color: rgb(55, 54, 60);
+    color: white;
 }
+
+
+// @media (max-width: 768px) {
+
+//     .container-card {
+//         // display: flex;
+//         flex-wrap: wrap;
+
+//     }
+
+//     .card {
+//         display: flex;
+//         flex-direction: row;
+//         border-radius: 2rem;
+//         height: 80px;
+//         width: calc((100% / 3) - 2rem);
+
+//         img {
+//             background-size: cover;
+//             background-position: center;
+//             width: 30%;
+//             height: 100%;
+//             border-bottom-left-radius: 2rem;
+//             border-top-left-radius: 2rem;
+//         }
+
+//         .content {
+//             font-size: 1rem;
+//             font-weight: 500;
+//             text-align: center;
+//             align-self: center;
+//             justify-self: flex-end;
+//             padding-inline: .5rem;
+//         }
+//     }
+// }
 
 
 
