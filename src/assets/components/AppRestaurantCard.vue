@@ -17,31 +17,51 @@ export default {
 </script>
 
 <template>
-    <div class="card mb-3" style="max-width: 540px;">
+  <div class="card-gap">
+    <router-link
+      :to="{
+        name: 'restaurants.show',
+        params: { restaurant: restaurant.id },
+      }"
+      class="card-text"
+    >
+      <div class="card mb-3">
         <div class="row g-0">
-            <div class="col-md-4">
-                <img :src=img class="img-fluid rounded-start" :alt="restaurant.name">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">{{ restaurant.rest_name }}</h5>
-                    <p class="card-text">{{ restaurant.address }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 
-
-    <div class="cont-card">
-        <div class="card border" style="width: 18rem">
-            <img :src="rest.img" class="card-img-top" :alt="rest.name" />
+          <div class="col-md-4 cont-img">
+            <img
+              :src="img"
+              class="img-fluid rounded-start img"
+              :alt="restaurant.name"
+            />
+          </div>
+          <div class="col-md-8">
             <div class="card-body">
-                <h2 class="card-text">{{ rest.rest_name }}</h2>
-                <h3>{{ rest.address }}</h3>
+              <h5 class="card-title">
+                {{ restaurant.rest_name }}
+              </h5>
+              <p class="card-text">{{ restaurant.address }}</p>
             </div>
+          </div>
         </div>
-    </div> -->
+      </div>
+    </router-link>
+  </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+// .restaurantcard {
+//   flex: 0 0 30%;
+//   padding: 0.5rem 0.8rem;
+
+//   img {
+//     width: 100%;
+//     background-size: cover;
+//     background-position: center;
+//   }
+// }
+
+.card-text {
+  text-decoration: none;
+  color: black;
+}
+</style>

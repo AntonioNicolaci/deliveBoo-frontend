@@ -35,7 +35,7 @@ export default {
                         cart += '{"id":"'+ id + '", "quant":"'+ quantit +'"}]'
                         cart = cart
 
-                        localStorage.setItem("cart", cart)
+            localStorage.setItem("cart", cart);
 
                         console.log("oggetto aggiunto");
                     }
@@ -60,10 +60,11 @@ export default {
                 })
         }
     },
-    created (){
-        this.getData()
-    }
-}
+  },
+  created() {
+    this.getData();
+  },
+};
 </script>
 <template>
     <button @click="destroyStorage()" style="background-color: red; width: 100px; height: 50px; color: aliceblue;">Nuke</button>
@@ -77,6 +78,4 @@ export default {
         
     </div>
 </template>
-<style lang="scss">
-    
-</style>
+<style lang="scss"></style>
