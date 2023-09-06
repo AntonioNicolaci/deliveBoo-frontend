@@ -133,6 +133,7 @@ export default {
     margin-right: 2rem;
     padding: 1rem;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    background-color: #e6e0d7;
   }
 
   .dish-card {
