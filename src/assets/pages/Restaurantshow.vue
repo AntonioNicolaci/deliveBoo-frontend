@@ -8,6 +8,29 @@ export default {
     };
   },
   methods: {
+    getPaltes() {
+      axios
+        .get(
+          "http://127.0.0.1:8000/api/restaurants/" +
+          String(this.$route.params.restaurant)
+        )
+        .then(response => (
+          this.restShow = response.data,
+          this.setListPlate()
+        ));
+    },
+    setListPlate() {
+      if (localStorage.getItem("cart") !== null) {
+        this.listPlate = JSON.parse(localStorage.getItem("cart"))
+      } else {
+        this.restShow.forEach(element => {
+          this.listPlate.push({ id: element.id, quantit: 0 })
+        })
+      }
+    },
+    getRestaurantImageUrl(img) {
+      return `/img/${img}`;
+    },
     destroyStorage() {
       localStorage.clear()
       console.log("Sono Morte, il distruttore di mondi");
@@ -18,7 +41,8 @@ export default {
       })
 
       if (sign == "-") {
-        const quantit = this.listPlate[key].quantit--
+        let quantit = this.listPlate[key].quantit
+        quantit--
         if (quantit <= -1) {
           this.listPlate[key].quantit = 0
         } else {
@@ -37,12 +61,13 @@ export default {
       // Raggruppa i piatti per ristorante
       const restaurantMap = new Map();
       this.restShow.forEach((item) => {
-        const { restaurant_id, rest_name, address } = item;
+        const { restaurant_id, rest_name, address, img } = item;
         if (!restaurantMap.has(restaurant_id)) {
           restaurantMap.set(restaurant_id, {
             id: restaurant_id,
             rest_name,
             address,
+            img,
             plates: [],
           });
         }
@@ -51,69 +76,40 @@ export default {
       return Array.from(restaurantMap.values());
     },
   },
-  watch: {
-    modPlate(newP, oldP){
-      localStorage.setItem("cart", this.modPlate)
-      console.log(localStorage.getItem("cart"));
-    }
-  },
 
   created() {
-    axios
-      .get(
-        "http://127.0.0.1:8000/api/restaurants/" +
-        String(this.$route.params.restaurant)
-      )
-      .then(response => (
-        this.restShow = response.data,
-        this.restShow.forEach(element => {
-          this.listPlate.push({id: element.id, quantit: 0})
-          console.log("s");
-        })
-        ));
+    this.getPaltes()
   },
 };
 </script>
 
 <template>
-  <!-- <div
-    class="rest-container"
-    v-for="restaurant in uniqueRestaurants"
-    :key="restaurant.id"
-  >
-    <div>
-      <div class="restaurant">
-        <img :src="restShow.img" :alt="restShow.rest_name" />
+  <div class="rest-container" v-for="restaurant in uniqueRestaurants" :key="restaurant.id">
+    <div class="restName">
+      <div class="restLogo">
+        <img :src="getRestaurantImageUrl(restaurant.img)" alt="" />
+      </div>
+      <div class="title">
         <h1>{{ restaurant.rest_name }}</h1>
         <p>{{ restaurant.address }}</p>
       </div>
-      <div class="plates" v-for="plate in restaurant.plates" :key="plate.id">
-        <h2>{{ plate.name }}</h2>
-        <div>ingredienti: {{ plate.ingredients }}</div>
-        <div>{{ plate.price }}€</div>
-      </div>
     </div>
-  </div> -->
-  <div class="rest-container" v-for="restaurant in uniqueRestaurants" :key="restaurant.id">
-    <div class="restName">
-      <h1>{{ restaurant.rest_name }}</h1>
-      <p>{{ restaurant.address }}</p>
-    </div>
-
     <div class="dish-container">
-      <div class="card plates" style="width: 18rem" v-for="plate, key in restaurant.plates" :key="plate.id">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">{{ plate.name }}</li>
-          <li class="list-group-item">ingredienti: {{ plate.ingredients }}</li>
-          <li class="list-group-item">
-            € {{ Math.round(plate.price / 100).toFixed(2) }}
-          </li>
-          <li class="list-group-item">
-            <input type="number" :name="plate.id" :id="plate.id" value="'modplate' + 'plate.id'">
-          </li>
-          <li class="list-group-item" style="background-color: burlywood;">
-            <div style="width:30px; height: 30px; background-color: black; margin: 5px"
-              @click="addPlate(plate.id)"></div>
+      <div class="card mb-3 plates" v-for="plate, key in restaurant.plates" :key="plate.id">
+        <div class="row g-0 dish-card">
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title cardText">{{ plate.name }}</h5>
+              <p class="card-text cardText ingredients">
+                {{ plate.ingredients }}
+              </p>
+              <p class="card-text cardText">
+                € {{ Math.round(plate.price / 100).toFixed(2) }}
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4 add">
             <div class="d-flex justify-content-center align-items-center"
               style="stroke-width: 1px; border:1px solid #37363D; width: 92px; height: 52px; border-radius: 5px;">
               <div class="d-flex justify-content-center align-items-center"
@@ -130,8 +126,8 @@ export default {
                 +
               </div>
             </div>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -143,6 +139,7 @@ export default {
 .rest-container {
   background-color: #e6e0d7;
   padding: 1rem 0.9rem;
+
   .restName {
     display: flex;
     justify-content: space-between;
