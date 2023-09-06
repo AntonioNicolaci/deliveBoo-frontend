@@ -60,11 +60,10 @@ export default {
                 })
         }
     },
-  },
   created() {
     this.getData();
-  },
-};
+  },  
+}
 </script>
 <template>
     <button @click="destroyStorage()" style="background-color: red; width: 100px; height: 50px; color: aliceblue;">Nuke</button>

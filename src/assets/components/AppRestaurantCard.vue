@@ -1,19 +1,15 @@
 <script>
 export default {
-    props: {
-        restaurant: Array,
-    },
+  props: {
+    restaurant: Array,
+  },
 
-    data() {
-
-        return {
-            img : "/img/" + this.restaurant.img,
-        }
-
-    },
-
-
-}
+  data() {
+    return {
+      img: "/img/" + this.restaurant.img,
+    };
+  },
+};
 </script>
 
 <template>

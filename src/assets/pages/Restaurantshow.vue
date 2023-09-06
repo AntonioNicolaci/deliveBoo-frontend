@@ -4,9 +4,34 @@ export default {
   data() {
     return {
       restShow: [],
+      listPlate: [],
     };
   },
+  methods: {
+    destroyStorage() {
+      localStorage.clear()
+      console.log("Sono Morte, il distruttore di mondi");
+    },
+    modPlate(id, sign, key) {
+      document.querySelectorAll(".text-danger").forEach(element => {
+        element.innerHTML = ""
+      })
 
+      if (sign == "-") {
+        const quantit = this.listPlate[key].quantit--
+        if (quantit <= -1) {
+          this.listPlate[key].quantit = 0
+        } else {
+          this.listPlate[key].quantit--
+        }
+      } else {
+        this.listPlate[key].quantit++
+      }
+
+      localStorage.setItem('cart', JSON.stringify(this.listPlate))
+
+    }
+  },
   computed: {
     uniqueRestaurants() {
       // Raggruppa i piatti per ristorante
@@ -26,14 +51,26 @@ export default {
       return Array.from(restaurantMap.values());
     },
   },
+  watch: {
+    modPlate(newP, oldP){
+      localStorage.setItem("cart", this.modPlate)
+      console.log(localStorage.getItem("cart"));
+    }
+  },
 
   created() {
     axios
       .get(
         "http://127.0.0.1:8000/api/restaurants/" +
-          String(this.$route.params.restaurant)
+        String(this.$route.params.restaurant)
       )
-      .then((response) => (this.restShow = response.data));
+      .then(response => (
+        this.restShow = response.data,
+        this.restShow.forEach(element => {
+          this.listPlate.push({id: element.id, quantit: 0})
+          console.log("s");
+        })
+        ));
   },
 };
 </script>
@@ -57,33 +94,49 @@ export default {
       </div>
     </div>
   </div> -->
-  <div
-    class="rest-container"
-    v-for="restaurant in uniqueRestaurants"
-    :key="restaurant.id"
-  >
+  <div class="rest-container" v-for="restaurant in uniqueRestaurants" :key="restaurant.id">
     <div class="restName">
       <h1>{{ restaurant.rest_name }}</h1>
       <p>{{ restaurant.address }}</p>
     </div>
 
     <div class="dish-container">
-      <div
-        class="card plates"
-        style="width: 18rem"
-        v-for="plate in restaurant.plates"
-        :key="plate.id"
-      >
+      <div class="card plates" style="width: 18rem" v-for="plate, key in restaurant.plates" :key="plate.id">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">{{ plate.name }}</li>
           <li class="list-group-item">ingredienti: {{ plate.ingredients }}</li>
           <li class="list-group-item">
             € {{ Math.round(plate.price / 100).toFixed(2) }}
           </li>
+          <li class="list-group-item">
+            <input type="number" :name="plate.id" :id="plate.id" value="'modplate' + 'plate.id'">
+          </li>
+          <li class="list-group-item" style="background-color: burlywood;">
+            <div style="width:30px; height: 30px; background-color: black; margin: 5px"
+              @click="addPlate(plate.id)"></div>
+            <div class="d-flex justify-content-center align-items-center"
+              style="stroke-width: 1px; border:1px solid #37363D; width: 92px; height: 52px; border-radius: 5px;">
+              <div class="d-flex justify-content-center align-items-center"
+                style="width: 20px; height: 40px; border-radius: 5px 0px 0px 5px; background: #F9F7ED;"
+                @click="modPlate(plate.id, `-`, key)">
+                -
+              </div>
+              <div class="d-flex justify-content-center align-items-center" style="width: 40px;">
+                {{ listPlate[key].quantit }}
+              </div>
+              <div class="d-flex justify-content-center align-items-center"
+                style="width: 20px; height: 40px; border-radius: 0px 5px 5px 0px; background: #F9F7ED;"
+                @click="modPlate(plate.id, `+`, key)">
+                +
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
   </div>
+  <button @click="destroyStorage()"
+    style="background-color: red; width: 100px; height: 50px; color: aliceblue;">Nuke</button>
 </template>
 
 <style lang="scss" scoped>
