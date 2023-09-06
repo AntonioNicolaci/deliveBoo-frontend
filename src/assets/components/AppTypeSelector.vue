@@ -51,12 +51,32 @@ export default {
         border-top-left-radius: 2rem;
     }
 
+    img {
+        background-size: cover;
+        height: 70%;
+        border-top-right-radius: 2rem;
+        border-top-left-radius: 2rem;
+    }
+
     .content {
         font-size: 1rem;
         font-weight: 500;
         text-align: center;
         padding-top: 1rem;
     }
+}
+
+.content {
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 1rem;
+}
+}
+
+.card:hover {
+    background-color: rgb(55, 54, 60);
+    color: white;
 }
 
 .card:hover {
@@ -66,28 +86,32 @@ export default {
 
 
 // @media (max-width: 768px) {
+// @media (max-width: 768px) {
 
 //     .container-card {
 //         // display: flex;
 //         flex-wrap: wrap;
+//     .container-card {
+//         // display: flex;
+//         flex-wrap: wrap;
 
-//     }
+// //     }
 
-//     .card {
-//         display: flex;
-//         flex-direction: row;
-//         border-radius: 2rem;
-//         height: 80px;
-//         width: calc((100% / 3) - 2rem);
+// //     .card {
+// //         display: flex;
+// //         flex-direction: row;
+// //         border-radius: 2rem;
+// //         height: 80px;
+// //         width: calc((100% / 3) - 2rem);
 
-//         img {
-//             background-size: cover;
-//             background-position: center;
-//             width: 30%;
-//             height: 100%;
-//             border-bottom-left-radius: 2rem;
-//             border-top-left-radius: 2rem;
-//         }
+// //         img {
+// //             background-size: cover;
+// //             background-position: center;
+// //             width: 30%;
+// //             height: 100%;
+// //             border-bottom-left-radius: 2rem;
+// //             border-top-left-radius: 2rem;
+// //         }
 
 //         .content {
 //             font-size: 1rem;
