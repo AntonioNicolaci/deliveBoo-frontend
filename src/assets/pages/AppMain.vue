@@ -64,10 +64,6 @@ export default {
 </template>
 
 <style lang="scss">
-.container-fluid {
-  padding: 3rem;
-}
-
 .container-type {
   border-radius: 3rem;
   padding: 1rem;
@@ -81,18 +77,13 @@ export default {
   padding: 1.5rem 2rem;
 }
 
-// .cont-type {
-//   height: 200px;
-//   background: white;
-//   width: 150px;
-//   border-radius: 4rem;
-// }
-
-// .cont-type:hover {
-//   background-color: rgb(55, 54, 60);
-//   color: white;
-// }
-
+.cont-type {
+  display: flex;
+  height: 200px;
+  // background: white;
+  width: 150px;
+  border-radius: 4rem;
+}
 
 .cont-text {
   padding: 1.5rem;
