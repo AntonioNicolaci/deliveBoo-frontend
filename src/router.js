@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import home from "./assets/pages/AppMain.vue";
 import AppCart from "./assets/pages/Cart.vue";
-import Restaurantshow from "./assets/pages/Restaurantshow.vue";
 import AppRestaurant from "./assets/pages/AppRestaurant.vue";
 import Restaurantshow from "./assets/pages/Restaurantshow.vue";
 
