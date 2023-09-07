@@ -87,13 +87,79 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.dish-container {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1100px;
-  align-items: center;
-  justify-content: flex-start;
-  padding-inline: 3rem;
-  margin: 1rem auto;
+@media screen and (max-width: 480px) {
+  //container generale
+  .rest-container {
+    width: 100%;
+  }
+
+  //container del ristoratore
+  .restName {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: rgb(231, 165, 80);
+
+    .restLogo {
+      flex: 0 0 100%;
+
+      img {
+        max-width: 250px;
+        text-align: center;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .title {
+      flex: 0 0 100%;
+      text-align: center;
+      line-height: 0.2rem;
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  //container piatti
+
+  .dish-container {
+    width: 100%;
+    flex-direction: column;
+    // display: flex;
+    // flex-wrap: wrap;
+    // align-items: stretch;
+    // justify-content: flex-start;
+    // padding: 0.5rem;
+  }
+
+  //card piatti
+
+  .plates {
+    flex: 0 0 100%;
+  }
+
+  //contenuto di ogni card
+  .dish-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .card-body {
+      flex: 0 0 100%;
+    }
+
+    .ingredients {
+      font-size: 0.8rem;
+    }
+
+    .add {
+      flex: 0 0 100%;
+      margin-left: 5rem;
+    }
+  }
 }
 </style>
