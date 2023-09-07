@@ -1,11 +1,17 @@
 <script>
-import AppOrder from "../components/AppOrder.vue"
+import AppOrder from "../components/appOrder.vue"
+import VueBraintree from "vue-braintree";
+import axios from 'axios'
+
+
+
 export default {
     data() {
         return {
             cartFull: false,
             arrCart: {},
             plates: {},
+            tokenApi: '',
         }
     },
     methods: {
@@ -14,7 +20,6 @@ export default {
             if(localStorage.getItem("cart") !== null) {
                 this.cartFull = true;
 
-                console.log(localStorage.getItem("cart"))
                 let cart = JSON.parse(localStorage.getItem("cart"))
                 this.arrCart = cart
             }
@@ -23,17 +28,34 @@ export default {
             axios.get("http://127.0.0.1:8000/api/data")
                 .then((response) => {
                     this.plates = response.data.plates
-                    console.log(this.plates);
                 })
-        }
+        },
+        onSuccess (payload) {
+            let nonce = payload.nonce;
+        },
+        onError (error) {
+            let message = error.message;
+        },
+        getToken(){
+            axios.get("http://127.0.0.1:8000/api/orders/generate")
+                .then((response) => {
+                    this.tokenApi = response.data.token
+                })
+        },
     },
     created () {
         this.searchData();
-        this.getData()
+        this.getData(),
+        this.getToken()
+    },
+
+    mounted() {
+        
     },
 
     components: {
         AppOrder,
+        vBraintree: VueBraintree,
     }
 }
 
@@ -53,7 +75,13 @@ export default {
                     <div class="fs-4 col-2 fw-bold">Totale</div>
                     <div class="fs-4 col-1 fw-bold">X</div>
                 </div>
-                <AppOrder v-for="cart in arrCart" :cart="cart" :plate="plates[cart.id - 1]"/>
+                <AppOrder v-for="cart, key in arrCart" :cart="cart" :plate="plates[cart.id - 1]" :keyO="key" :orders="arrCart"/>
+
+                <v-braintree 
+                    :authorization="tokenApi"
+                    @success="onSuccess"
+                    @error="onError"
+                ></v-braintree>
             </div>
         </div>
     </template>
