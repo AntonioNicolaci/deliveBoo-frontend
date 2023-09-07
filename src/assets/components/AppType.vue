@@ -17,28 +17,30 @@ export default {
 </script>
 <template>
     <template v-if="active == false">
-        <div class="container-fluid">
-            <div class="card col-lg-12 col-md-8 col-sm-6">
-                <img :src="img" :alt="singleType.name" class="card-image col-lg-12 col-md-8 col-sm-6">
+        <div class=" container d-flex justify-content-center">
+            <div class="card col-xxl-12 col-xl-4 col-lg-6 col-md-2 col-sm-6">
+                <img :src="img" :alt="singleType.name" class="card-image col-xxl-12 col-xl-12 col-lg-2">
                 <div class="content">{{ singleType.name }}</div>
             </div>
         </div>
-
     </template>
-    <template v-else-if="active == true">
-        <div class="container-fluid">
-            <div class="card col-lg-12 col-md-8 col-sm-6">
-                <img :src="img" :alt="singleType.name" class="card-image col-lg-12 col-md-8 col-sm-6">
+    <template v-if="active == true">
+        <div class=" container d-flex justify-content-center">
+            <div class="card col-xxl-12 col-xl-3 col-lg-6 col-md-2 col-sm-6">
+                <img :src="img" :alt="singleType.name" class="card-image col-xxl-12 col-xl-12 col-lg-2">
                 <div class="content">{{ singleType.name }}</div>
             </div>
         </div>
-
     </template>
 </template>
 <style lang="scss" scoped>
+.container {}
+
+
 .card {
     border-radius: 2rem;
-    height: 200px;
+    height: 400px;
+    width: 300px;
     margin-bottom: 1rem;
 
     img {
@@ -60,63 +62,5 @@ export default {
 .card:hover {
     background-color: rgb(55, 54, 60);
     color: white;
-}
-
-
-@media(max-width: 1031px) {
-    .container-fluid {
-        display: flex;
-        width: calc(100% / 6);
-    }
-
-    .card {
-        flex: 0 1 auto;
-    }
-}
-
-@media(max-width: 992px) {
-    .container-fluid {
-        display: flex;
-        width: calc(100% / 4);
-
-    }
-
-    .card {
-        flex: 0 1 auto;
-    }
-}
-
-@media(max-width: 920px) {
-    .container-fluid {
-        display: flex;
-        width: calc(100% / 3);
-
-    }
-
-    .card {
-        flex: 0 1 auto;
-    }
-}
-
-@media(max-width: 768px) {
-    .container-fluid {
-        display: flex;
-        width: calc(100% / 2);
-    }
-
-    .card {
-        flex: 0 1 auto;
-    }
-}
-
-@media(max-width: 576px) {
-    .container-fluid {
-        display: flex;
-        width: 100%;
-    }
-
-    .card {
-        flex: 0 1 auto;
-    }
 }
 </style>

@@ -42,8 +42,8 @@ export default {
 
         this.tests.forEach((test) => {
           this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === test);
-        this.filteredRest.push(this.selectedRest);
-        }); 
+          this.filteredRest.push(this.selectedRest);
+        });
         console.log(this.filteredRest);
 
         this.rndNumber();
@@ -62,28 +62,38 @@ export default {
 };
 </script>
 <template>
-  <div class="container-fluid">
-    <div class="container-type">
-      <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
-      <div v-for="daje in resType">
-        <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
-    </div>
-      <div class="cont-type col-lg-12 col-md-8 ">
-        <AppType v-for="singleType in arrTypes" :key="singleType.id" :singleType="singleType" :active="true"
-        @click="pushID(singleType.id)"/>
+  <div>
+    <div class="container-fluid">
+      <div class="container-type">
+        <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
+        <div v-for="daje in resType">
+          <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-sm-6" v-for="  singleType   in   arrTypes  " :key="singleType.id">
+            <AppType :singleType="singleType" :active="true" @click="pushID(singleType.id)" />
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="cont-text" style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)">
-      <h2 class="d-inline-block text-light">Per te:</h2>
-      <span class="text-light fs-5" style="">
-        {{ this.randomResoult }}
-      </span>
-    </div>
-    <div class="cont-card">
-      <AppRestaurantCard v-for="restaurant in arrRest" :key="restaurant.id" :restaurant="restaurant" />
+      <div class="cont-text" style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)">
+        <h2 class="d-inline-block text-light">Per te:</h2>
+        <span class="text-light fs-5">
+          {{ this.randomResoult }}
+        </span>
+      </div>
+      <div class="cont-card">
+        <div class="row">
+          <div class="col-md-2 col-sm-6" v-for="  restaurant   in   arrRest  " :key="restaurant.id">
+            <AppRestaurantCard :restaurant="restaurant" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
+
+
 
 <style lang="scss">
 .container-type {
@@ -99,7 +109,7 @@ export default {
   padding: 1.5rem 2rem;
 }
 
-.cont-type {
+.row {
   display: flex;
   border-radius: 4rem;
 }
@@ -122,80 +132,5 @@ export default {
 
 .border {
   border-radius: 4rem;
-}
-
-@media(max-width: 1269px) {
-
-  .cont-type {
-    width: 100%;
-  }
-
-}
-
-@media(max-width: 1335px) {
-  .cont-type {
-
-    background-size: cover;
-    width: 1250px;
-  }
-
-}
-
-@media(max-width: 1290px) {
-  .cont-type {
-    background-size: cover;
-    width: 1200px;
-
-  }
-}
-
-@media(max-width: 1241px) {
-  .cont-type {
-    background-size: cover;
-    width: 1150px;
-
-
-  }
-}
-
-@media(max-width: 1200px) {
-  .cont-type {
-    background-size: cover;
-    width: 1100px;
-
-
-  }
-}
-
-@media(max-width: 1139px) {
-  .cont-type {
-    background-size: cover;
-    width: 1080px;
-  }
-}
-
-
-@media(max-width: 1100px) {
-  .cont-type {
-    background-size: cover;
-    width: 1030px;
-  }
-}
-
-@media(max-width: 1060px) {
-  .cont-type {
-    background-size: cover;
-    width: 990px;
-
-
-  }
-}
-
-@media(max-width: 1031px) {
-  .cont-type {
-    flex-wrap: wrap;
-    background-size: contain;
-    width: 950px;
-  }
 }
 </style>
