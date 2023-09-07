@@ -2,6 +2,7 @@
 import axios from "axios";
 import AppType from "../components/AppType.vue";
 import AppRestaurantCard from "../components/AppRestaurantCard.vue";
+import { setTransitionHooks } from "vue";
 export default {
   data() {
     return {
@@ -12,9 +13,9 @@ export default {
       arrRest: {},
       resType: {},
       arrPlate: {},
-      filteredRest: {},
-      search: "Osteria",
-      // filteredRest: arrRest.types.includes(3),
+      selectedRest: [],
+      tests: [],
+      filteredRest: [],
     };
   },
   components: {
@@ -39,20 +40,21 @@ export default {
         this.resType = response.data.res_type;
         this.arrTypes = response.data.types;
         this.arrPlate = response.data.plates;
-        this.filteredRest = this.arrRest;
 
-        console.log(this.arrRest[0].rest_name);
+        this.tests.forEach((test) => {
+          this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === test);
+        this.filteredRest.push(this.selectedRest);
+        }); 
         console.log(this.filteredRest);
+
         this.rndNumber();
       });
     },
- 
-//     printID(id) {
-//         this.filteredRest = [];
-//         console.log(id);
-//         this.$emit("onClick", {array: this.filteredRest.push(id)});
-//         console.log(this.filteredRest);
-// },
+    pushID(id) {
+      this.tests = [];
+      this.tests.push(id);
+      console.log(this.tests);
+    },
 
   },
   created() {
@@ -64,16 +66,23 @@ export default {
   <div class="container-fluid">
     <div class="container-type">
       <h1 class="font">Restaurants</h1>
+      <div v-for="daje in resType">
+        <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
+    </div>
+      <div v-for="restaurant in filteredRest">
+        {{ restaurant.rest_name }}
+      </div>
       <div class="cont-type d-flex gap-4">
         <AppType
           v-for="singleType in arrTypes"
           :id="singleType.id"
           :singleType="singleType"
           :active="true"
-          @click="printID(singleType.id)"
+          @click="pushID(singleType.id)"
         />
       </div>
     </div>
+   
     <div
       class="cont-text"
       style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)"
@@ -85,9 +94,9 @@ export default {
     </div>
     <div class="cont-card">
       <AppRestaurantCard
-        v-for="restaurant in filteredRest"
-        :key="restaurant.id"
-        
+      v-for="restaurant in arrRest"
+      :key="restaurant.id"
+      :restaurant="restaurant"
       />
     </div>
   </div>
