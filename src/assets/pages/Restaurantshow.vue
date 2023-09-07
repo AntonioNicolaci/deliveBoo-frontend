@@ -111,18 +111,15 @@ export default {
           </div>
 
           <div class="col-md-4 add">
-            <div class="d-flex justify-content-center align-items-center"
-              style="stroke-width: 1px; border:1px solid #37363D; width: 92px; height: 52px; border-radius: 5px;">
-              <div class="d-flex justify-content-center align-items-center"
-                style="width: 20px; height: 40px; border-radius: 5px 0px 0px 5px; background: #F9F7ED;"
+            <div class="d-flex justify-content-center align-items-center switch-dock">
+              <div class="d-flex justify-content-center align-items-center joycon-left"
                 @click="modPlate(plate.id, `-`, key)">
                 -
               </div>
-              <div class="d-flex justify-content-center align-items-center" style="width: 40px;">
+              <div class="d-flex justify-content-center align-items-center switch-screen">
                 {{ listPlate[key].quantit }}
               </div>
-              <div class="d-flex justify-content-center align-items-center"
-                style="width: 20px; height: 40px; border-radius: 0px 5px 5px 0px; background: #F9F7ED;"
+              <div class="d-flex justify-content-center align-items-center joycon-right"
                 @click="modPlate(plate.id, `+`, key)">
                 +
               </div>
@@ -205,5 +202,62 @@ export default {
       justify-content: center;
     }
   }
+}
+
+.switch-dock {
+  stroke-width: 1px;
+  border:1px solid #37363D;
+  width: 92px;
+  height: 52px;
+  border-radius: 5px;
+}
+.joycon-left {
+  width: 20px;
+  height: 40px;
+  border-radius: 5px 0px 0px 5px;
+  background: #F9F7ED;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+  &:active {
+    animation-play-state: running;
+  }
+}
+
+@keyframes color-change-left {
+  0% {
+    background-color: #F9F7ED;
+  }
+  50% {
+    background-color: #00c3e3;
+  }
+  100% {
+    background-color: #F9F7ED;
+  }
+}
+.joycon-right {
+  width: 20px;
+  height: 40px;
+  border-radius: 0px 5px 5px 0px;
+  background: #F9F7ED;
+  animation: color-change-right 0.1s;
+  animation-play-state: paused;
+  &:active {
+    animation-play-state: running;
+  }
+}
+
+@keyframes color-change-right {
+  0% {
+    background-color: #F9F7ED;
+  }
+  50% {
+    background-color: #ff4554;
+  }
+  100% {
+    background-color: #F9F7ED;
+  }
+}
+.switch-screen {
+  width: 40px;
 }
 </style>
