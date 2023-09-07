@@ -21,7 +21,7 @@ export default {
           this.resType = response.data.res_type
           this.arratypes = response.data.types
           this.arrPlate = response.data.plates
-        })  
+        })
     },
   },
   created() {
@@ -41,19 +41,6 @@ export default {
   <AppJumbo />
   <router-view></router-view>
   <AppFooter />
-  <!-- <div id="card">
-    <button v-for="singleType in arrTypes" :key="singleType.id" class="-ms-card" @click="restSearch(singleType.id)">
-      {{ singleType.name }}
-    </button>
-  </div>
-  <ul id="ul">
-    <template v-for="rest in arrRest" :key="rest.id">
-      <li>{{ rest.rest_name }}</li>
-      <li>{{ rest.address }}</li>
-      <li>{{ rest.vat }}</li>
-      <li>{{ rest.img }}</li>
-    </template>
-  </ul> -->
 </template>
 
 <style lang="scss">
@@ -63,16 +50,5 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-#card {
-  display: flex;
-  flex-direction: row;
-}
-
-.-ms-card {
-  background-color: bisque;
-  color: cadetblue;
-  padding-inline: 5px;
 }
 </style>

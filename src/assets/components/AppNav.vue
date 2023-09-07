@@ -57,9 +57,4 @@ nav {
     border: 1px solid #37363C;
     border-radius: 10px;
 }
-
-.jumbo img {
-    width: 100%;
-    background-size: cover;
-}
 </style>
