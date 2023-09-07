@@ -89,71 +89,13 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.rest-container {
-  background-color: #e6e0d7;
-  padding: 1rem 0.9rem;
-  .restName {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 3rem;
-    padding: 2rem;
-    background-color: rgb(231, 165, 80);
-
-    .restLogo {
-      flex: 0 0 40%;
-
-      img {
-        width: 100%;
-        border-radius: 500rem;
-      }
-    }
-
-    .title {
-      flex: 0 0 60%;
-      text-align: center;
-    }
-  }
-
-  .dish-container {
-    max-width: 1200px;
-    padding: 0.8rem;
-    margin: 1rem auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    justify-content: flex-start;
-    padding: 0.5rem;
-  }
-
-  .plates {
-    flex: 0 0 45%;
-    border: 1px solid black;
-    border-radius: 2.5rem;
-    margin-right: 2rem;
-    padding: 1rem;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-    background-color: #e6e0d7;
-  }
-
-  .dish-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    .cardText {
-      flex: 0 0 60%;
-    }
-
-    .ingredients {
-      font-size: 0.8rem;
-    }
-
-    .add {
-      flex: 1 0 0;
-      margin-left: 5rem;
-    }
-  }
+.dish-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  align-items: center;
+  justify-content: flex-start;
+  padding-inline: 3rem;
+  margin: 1rem auto;
 }
 </style>

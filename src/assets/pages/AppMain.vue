@@ -103,10 +103,6 @@ export default {
 </template>
 
 <style lang="scss">
-.container-fluid {
-  padding: 3rem;
-}
-
 .container-type {
   border-radius: 3rem;
   padding: 1rem;
@@ -114,9 +110,18 @@ export default {
   background-color: rgb(231, 165, 80);
 }
 
-.font {
-  font-size: 4rem;
+.title {
+  font-size: 3rem;
   color: rgb(55, 54, 60);
+  padding: 1.5rem 2rem;
+}
+
+.cont-type {
+  display: flex;
+  height: 200px;
+  // background: white;
+  width: 150px;
+  border-radius: 4rem;
 }
 
 .cont-text {
