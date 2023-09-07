@@ -26,7 +26,7 @@ export default {
 }
 
 .jumbo img {
-    width: 60%;
+    width: 100%;
     background-size: cover;
 }
 </style>
