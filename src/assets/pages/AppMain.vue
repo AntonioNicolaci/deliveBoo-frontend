@@ -87,7 +87,7 @@ export default {
       class="cont-text"
       style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)"
     >
-      <h2 class="d-inline-block text-light">Per te:</h2> 
+      <h2 class="d-inline-block text-light">Per te:</h2>
       <span class="text-light fs-5" style="">
         {{ this.randomResoult }}
       </span>
