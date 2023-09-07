@@ -70,7 +70,7 @@ export default {
           <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
         </div>
         <div class="row">
-          <div class="col-md-2 col-sm-6" v-for="  singleType   in   arrTypes  " :key="singleType.id">
+          <div class="col-xxl-2 col-md-3 col-sm-12" v-for="  singleType   in   arrTypes  " :key="singleType.id">
             <AppType :singleType="singleType" :active="true" @click="pushID(singleType.id)" />
           </div>
         </div>
@@ -83,7 +83,7 @@ export default {
       </div>
       <div class="cont-card">
         <div class="row">
-          <div class="col-md-2 col-sm-6" v-for="  restaurant   in   arrRest  " :key="restaurant.id">
+          <div class="col-xxl-2 col-md-3 col-sm-12" v-for="  restaurant   in   arrRest  " :key="restaurant.id">
             <AppRestaurantCard :restaurant="restaurant" />
           </div>
         </div>
