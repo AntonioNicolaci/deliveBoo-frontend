@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import AppTypeSelector from "../components/AppTypeSelector.vue";
+import AppType from "../components/AppType.vue";
 import AppRestaurantCard from "../components/AppRestaurantCard.vue";
 export default {
   data() {
@@ -38,7 +38,7 @@ export default {
   },
 
   components: {
-    AppTypeSelector,
+    AppType,
     AppRestaurantCard,
   },
 };
@@ -48,7 +48,7 @@ export default {
     <div class="container-type">
       <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
       <div class="cont-type col-lg-12 col-md-8 ">
-        <AppTypeSelector v-for="singleType in arrTypes" :key="singleType.id" :singleType="singleType" :active="true" />
+        <AppType v-for="singleType in arrTypes" :key="singleType.id" :singleType="singleType" :active="true" />
       </div>
     </div>
     <div class="cont-text" style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)">
