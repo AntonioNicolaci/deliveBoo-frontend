@@ -60,19 +60,24 @@ export default {
   created() {
     this.getData();
   },
+
+  components: {
+    AppType,
+    AppRestaurantCard,
+  },
 };
 </script>
 <template>
   <div class="container-fluid">
     <div class="container-type">
-      <h1 class="font">Restaurants</h1>
+      <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
       <div v-for="daje in resType">
         <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
     </div>
       <div v-for="restaurant in filteredRest">
         {{ restaurant.rest_name }}
       </div>
-      <div class="cont-type d-flex gap-4">
+      <div class="cont-type col-lg-12 col-md-8 ">
         <AppType
           v-for="singleType in arrTypes"
           :id="singleType.id"
@@ -118,9 +123,6 @@ export default {
 
 .cont-type {
   display: flex;
-  height: 200px;
-  // background: white;
-  width: 150px;
   border-radius: 4rem;
 }
 
@@ -149,5 +151,80 @@ justify-content: center;
 
 .border {
   border-radius: 4rem;
+}
+
+@media(max-width: 1269px) {
+
+  .cont-type {
+    width: 100%;
+  }
+
+}
+
+@media(max-width: 1335px) {
+  .cont-type {
+
+    background-size: cover;
+    width: 1250px;
+  }
+
+}
+
+@media(max-width: 1290px) {
+  .cont-type {
+    background-size: cover;
+    width: 1200px;
+
+  }
+}
+
+@media(max-width: 1241px) {
+  .cont-type {
+    background-size: cover;
+    width: 1150px;
+
+
+  }
+}
+
+@media(max-width: 1200px) {
+  .cont-type {
+    background-size: cover;
+    width: 1100px;
+
+
+  }
+}
+
+@media(max-width: 1139px) {
+  .cont-type {
+    background-size: cover;
+    width: 1080px;
+  }
+}
+
+
+@media(max-width: 1100px) {
+  .cont-type {
+    background-size: cover;
+    width: 1030px;
+  }
+}
+
+@media(max-width: 1060px) {
+  .cont-type {
+    background-size: cover;
+    width: 990px;
+
+
+  }
+}
+
+@media(max-width: 1031px) {
+  .cont-type {
+    flex-wrap: wrap;
+    background-size: contain;
+    width: 950px;
+  }
 }
 </style>
