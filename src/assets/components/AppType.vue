@@ -17,29 +17,32 @@ export default {
 </script>
 <template>
     <template v-if="active == false">
-        <div class="container-fluid">
-            <div class="card col-lg-12 col-md-8 col-sm-6">
-                <img :src="img" :alt="singleType.name" class="card-image col-lg-12 col-md-8 col-sm-6">
+        <div class=" container d-flex justify-content-around">
+            <div class="card col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                <img :src="img" :alt="singleType.name" class="card-image col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
                 <div class="content">{{ singleType.name }}</div>
             </div>
         </div>
-
     </template>
-    <template v-else-if="active == true">
-        <div class="container-fluid">
-            <div class="card col-lg-12 col-md-8 col-sm-6">
-                <img :src="img" :alt="singleType.name" class="card-image col-lg-12 col-md-8 col-sm-6">
+    <template v-if="active == true">
+        <div class=" container d-flex justify-content-around">
+            <div class="card col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                <img :src="img" :alt="singleType.name" class="card-image col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
                 <div class="content">{{ singleType.name }}</div>
             </div>
         </div>
-
     </template>
 </template>
 <style lang="scss" scoped>
+.container {}
+
+
 .card {
     border-radius: 2rem;
     height: 200px;
+    width: 150px;
     margin-bottom: 1rem;
+    flex: 0 1 auto;
 
     img {
         background-size: cover;
@@ -62,61 +65,10 @@ export default {
     color: white;
 }
 
+// @media (min-width: 768px) {
+//     .col-md-2 {
+//         flex: 0 1 auto;
+//     }
 
-@media(max-width: 1031px) {
-    .container-fluid {
-        display: flex;
-        width: calc(100% / 6);
-    }
-
-    .card {
-        flex: 0 1 auto;
-    }
-}
-
-@media(max-width: 992px) {
-    .container-fluid {
-        display: flex;
-        width: calc(100% / 4);
-
-    }
-
-    .card {
-        flex: 0 1 auto;
-    }
-}
-
-@media(max-width: 920px) {
-    .container-fluid {
-        display: flex;
-        width: calc(100% / 3);
-
-    }
-
-    .card {
-        flex: 0 1 auto;
-    }
-}
-
-@media(max-width: 768px) {
-    .container-fluid {
-        display: flex;
-        width: calc(100% / 2);
-    }
-
-    .card {
-        flex: 0 1 auto;
-    }
-}
-
-@media(max-width: 576px) {
-    .container-fluid {
-        display: flex;
-        width: 100%;
-    }
-
-    .card {
-        flex: 0 1 auto;
-    }
-}
+// }
 </style>
