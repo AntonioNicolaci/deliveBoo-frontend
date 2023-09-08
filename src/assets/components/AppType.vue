@@ -34,9 +34,6 @@ export default {
     </template>
 </template>
 <style lang="scss" scoped>
-.container {}
-
-
 .card {
     border-radius: 2rem;
     height: 200px;
