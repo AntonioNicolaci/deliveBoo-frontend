@@ -16,25 +16,28 @@ export default {
 
 </script>
 <template>
-    <template v-if="active == false">
-        <div class=" container d-flex justify-content-around">
+    <button>
+    <template v-if="active === false">
+        <div class="container d-flex justify-content-around">
             <div class="card col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
                 <img :src="img" :alt="singleType.name" class="card-image col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
                 <div class="content">{{ singleType.name }}</div>
             </div>
         </div>
     </template>
-    <template v-if="active == true">
-        <div class=" container d-flex justify-content-around">
+    <template v-if="active === true">
+        <div class="container d-flex justify-content-around">
             <div class="card col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
                 <img :src="img" :alt="singleType.name" class="card-image col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
                 <div class="content">{{ singleType.name }}</div>
             </div>
         </div>
     </template>
+    </button>
+
 </template>
 <style lang="scss" scoped>
-.container {}
+
 
 
 .card {

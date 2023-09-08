@@ -14,6 +14,7 @@ export default {
       arrPlate: {},
       selectedRest: [],
       tests: [],
+      forza: [],
       filteredRest: [],
     };
   },
@@ -40,8 +41,8 @@ export default {
         this.arrTypes = response.data.types;
         this.arrPlate = response.data.plates;
 
-        this.tests.forEach((test) => {
-          this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === test);
+        this.forza.forEach((su) => {
+          this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === su);
           this.filteredRest.push(this.selectedRest);
         });
         console.log(this.filteredRest);
@@ -52,8 +53,23 @@ export default {
     pushID(id) {
       this.tests = [];
       this.tests.push(id);
-      console.log(this.tests);
+      this.resType.forEach((daje) => {
+        if (daje.type_id == id) {
+
+         this.forza.push(daje.restaurant_id)
+        }
+      })
+      ;
+    
+      this.forza.forEach((su) => {
+          this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === su);
+        this.filteredRest.push(this.selectedRest);
+        }); 
+
     },
+    minchia() {
+      console.log("daje");
+    }
 
   },
   created() {
@@ -67,11 +83,18 @@ export default {
       <div class="container-type">
         <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
         <div v-for="daje in resType">
-          <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
-        </div>
+          <span></span>
+        <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
+    </div>
         <div class="row">
-          <div class="col-xxl-2 col-md-3 col-sm-12" v-for="  singleType   in   arrTypes  " :key="singleType.id">
-            <AppType :singleType="singleType" :active="true" @click="pushID(singleType.id)" />
+          <div class="col-xxl-2 col-md-3 col-sm-12">
+            <AppType
+              v-for="singleType in arrTypes"
+            :id="singleType.id"
+            :singleType="singleType"
+            :active="true"
+            @click="pushID(singleType.id)"
+        />
           </div>
         </div>
       </div>
@@ -83,7 +106,7 @@ export default {
       </div>
       <div class="cont-card">
         <div class="row">
-          <div class="col-xxl-2 col-md-3 col-sm-12" v-for="  restaurant   in   arrRest  " :key="restaurant.id">
+          <div class="col-xxl-2 col-md-3 col-sm-12" v-for="  restaurant   in   filteredRest  " :key="restaurant.id">
             <AppRestaurantCard :restaurant="restaurant" />
           </div>
         </div>
