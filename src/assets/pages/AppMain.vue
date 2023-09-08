@@ -12,9 +12,9 @@ export default {
       arrRest: {},
       resType: {},
       arrPlate: {},
-      selectedRest: [],
+      selectedRest: {},
       tests: [],
-      filteredRest: [],
+      filteredRest: {},
     };
   },
   components: {
@@ -40,10 +40,10 @@ export default {
         this.arrTypes = response.data.types;
         this.arrPlate = response.data.plates;
 
-        this.tests.forEach((test) => {
-          this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === test);
-        this.filteredRest.push(this.selectedRest);
-        }); 
+        // this.tests.forEach((test) => {
+        //   this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === test);
+        // this.filteredRest.push(this.selectedRest);
+        // }); 
         console.log(this.filteredRest);
 
         this.rndNumber();
@@ -51,8 +51,18 @@ export default {
     },
     pushID(id) {
       this.tests = [];
+            // this.tests.forEach((test) => {
+      //     this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === test);
+      //   this.filteredRest.push(this.selectedRest);
+      //   });
       this.tests.push(id);
-      console.log(this.tests);
+      // this.tests.forEach((test) => {
+      //     this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === test);
+      //   this.filteredRest.push(this.selectedRest);
+      //   }); 
+        console.log(this.tests);
+      //   console.log(this.selectedTest);
+      // console.log(this.filterdRest);
     },
 
   },
@@ -80,7 +90,7 @@ export default {
       </span>
     </div>
     <div class="cont-card">
-      <AppRestaurantCard v-for="restaurant in arrRest" :key="restaurant.id" :restaurant="restaurant" />
+      <AppRestaurantCard v-for="restaurant in filteredRest" :key="restaurant.id" :restaurant="restaurant" />
     </div>
   </div>
 </template>
