@@ -17,29 +17,27 @@ export default {
 </script>
 <template>
     <button>
-    <template v-if="active === false">
-        <div class="container d-flex justify-content-around">
-            <div class="card col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                <img :src="img" :alt="singleType.name" class="card-image col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                <div class="content">{{ singleType.name }}</div>
+        <template v-if="active === false">
+            <div class="container d-flex justify-content-around">
+                <div class="card col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                    <img :src="img" :alt="singleType.name"
+                        class="card-image col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                    <div class="content">{{ singleType.name }}</div>
+                </div>
             </div>
-        </div>
-    </template>
-    <template v-if="active === true">
-        <div class="container d-flex justify-content-around">
-            <div class="card col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                <img :src="img" :alt="singleType.name" class="card-image col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                <div class="content">{{ singleType.name }}</div>
+        </template>
+        <template v-if="active === true">
+            <div class="container d-flex justify-content-around">
+                <div class="card col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                    <img :src="img" :alt="singleType.name"
+                        class="card-image col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                    <div class="content">{{ singleType.name }}</div>
+                </div>
             </div>
-        </div>
-    </template>
+        </template>
     </button>
-
 </template>
 <style lang="scss" scoped>
-
-
-
 .card {
     border-radius: 2rem;
     height: 200px;

@@ -13,22 +13,15 @@ export default {
 </script>
 
 <template>
-  <div class="card-gap">
-    <router-link
-      :to="{
-        name: 'restaurants.show',
-        params: { restaurant: restaurant.id },
-      }"
-      class="card-text"
-    >
+  <div class="container-card">
+    <router-link :to="{
+      name: 'restaurants.show',
+      params: { restaurant: restaurant.id },
+    }" class="card-text">
       <div class="card mb-3">
         <div class="row g-0">
           <div class="col-md-4 cont-img">
-            <img
-              :src="img"
-              class="img-fluid rounded-start img"
-              :alt="restaurant.name"
-            />
+            <img :src="img" class="img-fluid rounded-start img" :alt="restaurant.name" />
           </div>
           <div class="col-md-8">
             <div class="card-body">

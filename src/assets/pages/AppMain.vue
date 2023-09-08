@@ -56,15 +56,15 @@ export default {
       this.resType.forEach((daje) => {
         if (daje.type_id == id) {
 
-         this.forza.push(daje.restaurant_id)
+          this.forza.push(daje.restaurant_id)
         }
       })
-      ;
-    
+        ;
+
       this.forza.forEach((su) => {
-          this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === su);
+        this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === su);
         this.filteredRest.push(this.selectedRest);
-        }); 
+      });
 
     },
     minchia() {
@@ -84,17 +84,12 @@ export default {
         <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
         <div v-for="daje in resType">
           <span></span>
-        <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
-    </div>
+          <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
+        </div>
         <div class="row">
           <div class="col-xxl-2 col-md-3 col-sm-12">
-            <AppType
-              v-for="singleType in arrTypes"
-            :id="singleType.id"
-            :singleType="singleType"
-            :active="true"
-            @click="pushID(singleType.id)"
-        />
+            <AppType v-for="singleType in arrTypes" :id="singleType.id" :singleType="singleType" :active="true"
+              @click="pushID(singleType.id)" />
           </div>
         </div>
       </div>
@@ -106,8 +101,8 @@ export default {
       </div>
       <div class="cont-card">
         <div class="row">
-          <div class="col-xxl-2 col-md-3 col-sm-12" v-for="  restaurant   in   filteredRest  " :key="restaurant.id">
-            <AppRestaurantCard :restaurant="restaurant" />
+          <div class="col-xxl-2 col-md-3 col-sm-12">
+            <AppRestaurantCard v-for="restaurant in filteredRest" :key="restaurant.id" :restaurant="restaurant" />
           </div>
         </div>
       </div>
@@ -145,12 +140,12 @@ export default {
 }
 
 .cont-card {
-  margin-top: 1.5rem;
-  padding-inline: 5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4rem;
-  justify-content: center;
+  //  margin-top: 1.5rem;
+  //  padding-inline: 5rem;
+  //  display: flex;
+  //  flex-wrap: wrap;
+  //  gap: 4rem;
+  //  justify-content: center;
 }
 
 .border {
