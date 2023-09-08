@@ -56,15 +56,15 @@ export default {
       this.resType.forEach((daje) => {
         if (daje.type_id == id) {
 
-         this.forza.push(daje.restaurant_id)
+          this.forza.push(daje.restaurant_id)
         }
       })
-      ;
-    
+        ;
+
       this.forza.forEach((su) => {
-          this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === su);
+        this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === su);
         this.filteredRest.push(this.selectedRest);
-        }); 
+      });
 
     },
     minchia() {
@@ -84,19 +84,13 @@ export default {
         <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
         <div v-for="daje in resType">
           <span></span>
-        <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
-    </div>
-        <div class="row">
-          <div class="col-xxl-2 col-md-3 col-sm-12">
-            <AppType
-              v-for="singleType in arrTypes"
-            :id="singleType.id"
-            :singleType="singleType"
-            :active="true"
-            @click="pushID(singleType.id)"
-        />
-          </div>
+          <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
         </div>
+        <div class="container d-flex justify-content-center flex-wrap gap-4">
+          <AppType v-for="singleType in arrTypes" :id="singleType.id" :singleType="singleType" :active="true"
+            @click="pushID(singleType.id)" />
+        </div>
+
       </div>
       <div class="cont-text" style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)">
         <h2 class="d-inline-block text-light">Per te:</h2>
@@ -130,6 +124,7 @@ export default {
   font-size: 3rem;
   color: rgb(55, 54, 60);
   padding: 1.5rem 2rem;
+  text-align: center;
 }
 
 .row {
@@ -155,5 +150,9 @@ export default {
 
 .border {
   border-radius: 4rem;
+}
+
+.row {
+  margin-inline: 3rem;
 }
 </style>
