@@ -86,10 +86,6 @@ export default {
     <div class="container-fluid">
       <div class="container-type">
         <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
-        <div v-for="daje in resType">
-          <span></span>
-          <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
-        </div>
         <div class="container d-flex justify-content-center flex-wrap gap-4">
           <AppType v-for="singleType in arrTypes" :id="singleType.id" :singleType="singleType" :active="true"
             @click="pushID(singleType.id)" />
