@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 import AppType from "../components/AppType.vue";
+import AppJumbo from "../components/AppJumbo.vue";
 import AppRestaurantCard from "../components/AppRestaurantCard.vue";
 export default {
   data() {
@@ -20,11 +21,13 @@ export default {
   },
   components: {
     AppType,
+    AppJumbo,
     AppRestaurantCard,
   },
   methods: {
     rndNumber() {
-      this.randomPerTe = (Math.floor(Math.random() * Object.keys(this.arrTypes).length) + 1);
+      this.randomPerTe =
+        Math.floor(Math.random() * Object.keys(this.arrTypes).length) + 1;
       this.randomResoult = this.arrTypes[this.randomPerTe].description;
     },
     addImg(img) {
@@ -42,7 +45,9 @@ export default {
         this.arrPlate = response.data.plates;
 
         this.forza.forEach((su) => {
-          this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === su);
+          this.selectedRest = this.arrRest.find(
+            (selectedRest) => selectedRest.id === su
+          );
           this.filteredRest.push(this.selectedRest);
         });
         console.log(this.filteredRest);
@@ -55,22 +60,20 @@ export default {
       this.tests.push(id);
       this.resType.forEach((daje) => {
         if (daje.type_id == id) {
-
-         this.forza.push(daje.restaurant_id)
+          this.forza.push(daje.restaurant_id);
         }
-      })
-      ;
-    
-      this.forza.forEach((su) => {
-          this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === su);
-        this.filteredRest.push(this.selectedRest);
-        }); 
+      });
 
+      this.forza.forEach((su) => {
+        this.selectedRest = this.arrRest.find(
+          (selectedRest) => selectedRest.id === su
+        );
+        this.filteredRest.push(this.selectedRest);
+      });
     },
     minchia() {
       console.log("daje");
-    }
-
+    },
   },
   created() {
     this.getData();
@@ -78,35 +81,47 @@ export default {
 };
 </script>
 <template>
+  <AppJumbo />
   <div>
     <div class="container-fluid">
       <div class="container-type">
         <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
         <div v-for="daje in resType">
           <span></span>
-        <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
-    </div>
+          <span v-if="this.tests.includes(daje.type_id)">
+            {{ daje.restaurant_id }}</span
+          >
+        </div>
         <div class="row">
           <div class="col-xxl-2 col-md-3 col-sm-12">
             <AppType
               v-for="singleType in arrTypes"
-            :id="singleType.id"
-            :singleType="singleType"
-            :active="true"
-            @click="pushID(singleType.id)"
-        />
+              :id="singleType.id"
+              :singleType="singleType"
+              :active="true"
+              @click="pushID(singleType.id)"
+            />
           </div>
         </div>
       </div>
-      <div class="cont-text" style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)">
-        <h2 class="d-inline-block text-light">Per te:</h2>
-        <span class="text-light fs-5">
+      <div
+        class="cont-text"
+        style="
+          background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%);
+        "
+      >
+        <h2 class="d-inline-block text-light">Curiosità:</h2>
+        <span class="text-light">
           {{ this.randomResoult }}
         </span>
       </div>
       <div class="cont-card">
         <div class="row">
-          <div class="col-xxl-2 col-md-3 col-sm-12" v-for="  restaurant   in   filteredRest  " :key="restaurant.id">
+          <div
+            class="col-xxl-2 col-md-3 col-sm-12"
+            v-for="restaurant in filteredRest"
+            :key="restaurant.id"
+          >
             <AppRestaurantCard :restaurant="restaurant" />
           </div>
         </div>
@@ -114,9 +129,6 @@ export default {
     </div>
   </div>
 </template>
-
-
-
 
 <style lang="scss">
 .container-type {
@@ -138,10 +150,19 @@ export default {
 }
 
 .cont-text {
-  padding: 1.5rem;
+  padding: 1rem;
   margin-top: 1rem;
-  background-color: rgb(55, 54, 60);
+  //background-color: rgb(55, 54, 60);
   border-radius: 2rem;
+  font-style: italic;
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  span {
+    font-size: 1rem;
+  }
 }
 
 .cont-card {
