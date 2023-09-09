@@ -53,6 +53,10 @@ export default {
     pushID(id) {
       this.tests = [];
       this.tests.push(id);
+      this.forza = [];
+      this.selectedRest = [];
+      this.filteredRest = [];
+      
       this.resType.forEach((daje) => {
         if (daje.type_id == id) {
 
