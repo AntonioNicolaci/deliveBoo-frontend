@@ -8,12 +8,9 @@ export default {
         return {
             actived: false,
             img: "/" + this.singleType.img,
-        }
+        };
     },
-}
-
-
-
+};
 </script>
 <template>
     <button>
