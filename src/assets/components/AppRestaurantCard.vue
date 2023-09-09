@@ -13,31 +13,16 @@ export default {
 </script>
 
 <template>
-  <div class="card-gap">
-    <router-link
-      :to="{
-        name: 'restaurants.show',
-        params: { restaurant: restaurant.id },
-      }"
-      class="card-text"
-    >
-      <div class="card mb-3">
-        <div class="row g-0">
-          <div class="col-md-4 cont-img">
-            <img
-              :src="img"
-              class="img-fluid rounded-start img"
-              :alt="restaurant.name"
-            />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">
-                {{ restaurant.rest_name }}
-              </h5>
-              <p class="card-text">{{ restaurant.address }}</p>
-            </div>
-          </div>
+  <div class="container">
+    <router-link :to="{
+      name: 'restaurants.show',
+      params: { restaurant: restaurant.id },
+    }" class="card-text">
+      <div class="card mb-4" style="width: 18rem;">
+        <img :src="img" class="img" :alt="restaurant.name" />
+        <div class="card-body col-md-8">
+          <h5 class="card-title">{{ restaurant.rest_name }}</h5>
+          <p class="card-text">{{ restaurant.address }}</p>
         </div>
       </div>
     </router-link>
@@ -45,17 +30,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-// .restaurantcard {
-//   flex: 0 0 30%;
-//   padding: 0.5rem 0.8rem;
-
-//   img {
-//     width: 100%;
-//     background-size: cover;
-//     background-position: center;
-//   }
-// }
-
 .card-text {
   text-decoration: none;
   color: black;

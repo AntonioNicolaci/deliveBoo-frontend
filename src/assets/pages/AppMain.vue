@@ -100,7 +100,8 @@ export default {
       </div>
       <div class="cont-card">
         <div class="row">
-          <div class="col-xxl-2 col-md-3 col-sm-12" v-for="  restaurant   in   filteredRest  " :key="restaurant.id">
+          <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-12" v-for="  restaurant   in   filteredRest  "
+            :key="restaurant.id">
             <AppRestaurantCard :restaurant="restaurant" />
           </div>
         </div>
