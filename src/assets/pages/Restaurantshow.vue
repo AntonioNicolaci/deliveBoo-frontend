@@ -5,6 +5,8 @@ export default {
     return {
       restShow: [],
       listPlate: [],
+      alertResId: false,
+      alertPlate: false,
     };
   },
   methods: {
@@ -12,7 +14,7 @@ export default {
       axios
         .get(
           "http://127.0.0.1:8000/api/restaurants/" +
-            String(this.$route.params.restaurant)
+          String(this.$route.params.restaurant)
         )
         .then(
           (response) => ((this.restShow = response.data), this.setListPlate())
@@ -20,11 +22,19 @@ export default {
     },
     setListPlate() {
       if (localStorage.getItem("cart") !== null) {
-        this.listPlate = JSON.parse(localStorage.getItem("cart"));
+        if (JSON.parse(localStorage.getItem("cart"))[0].res_id == this.$route.params.restaurant) {
+          this.alertResId = false
+          this.listPlate = JSON.parse(localStorage.getItem("cart"))
+        } else {
+          this.alertResId = true
+          this.restShow.forEach(element => {
+            this.listPlate.push({ id: element.id, quantit: 0, res_id: element.restaurant_id })
+          })
+        }
       } else {
-        this.restShow.forEach((element) => {
-          this.listPlate.push({ id: element.id, quantit: 0 });
-        });
+        this.restShow.forEach(element => {
+          this.listPlate.push({ id: element.id, quantit: 0, res_id: element.restaurant_id })
+        })
       }
     },
     getRestaurantImageUrl(img) {
@@ -35,58 +45,53 @@ export default {
       console.log("Sono Morte, il distruttore di mondi");
     },
     modPlate(id, sign, key) {
-      document.querySelectorAll(".text-danger").forEach((element) => {
-        element.innerHTML = "";
-      });
+      if (localStorage.getItem("cart") !== null) {
+        if (JSON.parse(localStorage.getItem("cart"))[0].res_id == this.$route.params.restaurant) {
+          if (sign == "-") {
+            let quantit = this.listPlate[key].quantit
+            quantit--
+            if (quantit <= -1) {
+              this.listPlate[key].quantit = 0
+            } else {
+              this.listPlate[key].quantit--
+            }
+          } else {
+            this.listPlate[key].quantit++
+          }
 
-      if (sign == "-") {
-        let quantit = this.listPlate[key].quantit;
-        quantit--;
-        if (quantit <= -1) {
-          this.listPlate[key].quantit = 0;
-        } else {
-          this.listPlate[key].quantit--;
+          localStorage.setItem('cart', JSON.stringify(this.listPlate))
+
         }
-      } else {
-        this.listPlate[key].quantit++;
-      }
-
-      localStorage.setItem("cart", JSON.stringify(this.listPlate));
-    },
-  },
-  computed: {
-    uniqueRestaurants() {
-      // Raggruppa i piatti per ristorante
-      const restaurantMap = new Map();
-      this.restShow.forEach((item) => {
-        const { restaurant_id, rest_name, address, img } = item;
-        if (!restaurantMap.has(restaurant_id)) {
-          restaurantMap.set(restaurant_id, {
-            id: restaurant_id,
-            rest_name,
-            address,
-            img,
-            plates: [],
+      },
+      computed: {
+        uniqueRestaurants() {
+          // Raggruppa i piatti per ristorante
+          const restaurantMap = new Map();
+          this.restShow.forEach((item) => {
+            const { restaurant_id, rest_name, address, img } = item;
+            if (!restaurantMap.has(restaurant_id)) {
+              restaurantMap.set(restaurant_id, {
+                id: restaurant_id,
+                rest_name,
+                address,
+                img,
+                plates: [],
+              });
+            }
+            restaurantMap.get(restaurant_id).plates.push(item);
           });
-        }
-        restaurantMap.get(restaurant_id).plates.push(item);
-      });
-      return Array.from(restaurantMap.values());
-    },
-  },
+          return Array.from(restaurantMap.values());
+        },
+      },
 
-  created() {
-    this.getPaltes();
-  },
-};
+      created() {
+        this.getPaltes();
+      },
+    };
 </script>
 
 <template>
-  <div
-    class="rest-container"
-    v-for="restaurant in uniqueRestaurants"
-    :key="restaurant.id"
-  >
+  <div class="rest-container" v-for="restaurant in uniqueRestaurants" :key="restaurant.id">
     <div class="restName">
       <div class="restLogo">
         <img :src="getRestaurantImageUrl(restaurant.img)" alt="" />
@@ -97,12 +102,15 @@ export default {
       </div>
     </div>
 
+    <div class="alert alert-danger my-3" v-if="alertResId">
+      Attenzione, sei su un altro ristorante, non potrai ordinare piatti da qui.
+    </div>
+    <div class="alert alert-warning" role="alert" v-if="alertPlate">
+      Attenzione, non puoi ordinare da un altro ristorante.
+    </div>
+
     <div class="dish-container">
-      <div
-        class="card mb-3 plates"
-        v-for="(plate, key) in restaurant.plates"
-        :key="plate.id"
-      >
+      <div class="card mb-3 plates" v-for="(plate, key) in restaurant.plates" :key="plate.id">
         <div class="row g-0 dish-card">
           <div class="col-md-8">
             <div class="card-body">
@@ -117,24 +125,16 @@ export default {
           </div>
 
           <div class="col-md-4 add">
-            <div
-              class="d-flex justify-content-center align-items-center switch-dock"
-            >
-              <div
-                class="d-flex justify-content-center align-items-center joycon-left"
-                @click="modPlate(plate.id, `-`, key)"
-              >
+            <div class="d-flex justify-content-center align-items-center switch-dock">
+              <div class="d-flex justify-content-center align-items-center joycon-left"
+                @click="modPlate(plate.id, `-`, key)">
                 -
               </div>
-              <div
-                class="d-flex justify-content-center align-items-center switch-screen"
-              >
+              <div class="d-flex justify-content-center align-items-center switch-screen">
                 {{ listPlate[key].quantit }}
               </div>
-              <div
-                class="d-flex justify-content-center align-items-center joycon-right"
-                @click="modPlate(plate.id, `+`, key)"
-              >
+              <div class="d-flex justify-content-center align-items-center joycon-right"
+                @click="modPlate(plate.id, `+`, key)">
                 +
               </div>
             </div>
@@ -143,25 +143,20 @@ export default {
       </div>
     </div>
 
-    <router-link
-      :to="{
-        name: 'home',
-      }"
-      class="arrow-back"
-    >
+    <router-link :to="{
+      name: 'home',
+    }" class="arrow-back">
       <i class="bi bi-arrow-left-circle-fill btn-back"></i>
     </router-link>
   </div>
-  <button
-    @click="destroyStorage()"
-    style="background-color: red; width: 100px; height: 50px; color: aliceblue"
-  >
+  <button @click="destroyStorage()" style="background-color: red; width: 100px; height: 50px; color: aliceblue">
     Nuke
   </button>
 </template>
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
 .rest-container {
   background-color: #e6e0d7;
   padding: 1rem 0.9rem;
@@ -260,6 +255,7 @@ export default {
   height: 52px;
   border-radius: 5px;
 }
+
 .joycon-left {
   width: 20px;
   height: 40px;
@@ -267,6 +263,7 @@ export default {
   background: #f9f7ed;
   animation-fill-mode: forwards;
   animation-play-state: paused;
+
   &:active {
     animation-play-state: running;
   }
@@ -276,13 +273,16 @@ export default {
   0% {
     background-color: #f9f7ed;
   }
+
   50% {
     background-color: #00c3e3;
   }
+
   100% {
     background-color: #f9f7ed;
   }
 }
+
 .joycon-right {
   width: 20px;
   height: 40px;
@@ -290,6 +290,7 @@ export default {
   background: #f9f7ed;
   animation: color-change-right 0.1s;
   animation-play-state: paused;
+
   &:active {
     animation-play-state: running;
   }
@@ -299,13 +300,16 @@ export default {
   0% {
     background-color: #f9f7ed;
   }
+
   50% {
     background-color: #ff4554;
   }
+
   100% {
     background-color: #f9f7ed;
   }
 }
+
 .switch-screen {
   width: 40px;
 }
@@ -313,6 +317,7 @@ export default {
 //MEDIA QUERY PER MOBILE SCREEN 320/500px
 
 @media (max-width: 500px) {
+
   //container generale
   .rest-container {
     width: 100%;
@@ -344,6 +349,7 @@ export default {
         line-height: 0.2rem;
         padding: 0.4rem;
       }
+
       h1 {
         font-size: 2.3rem;
       }
