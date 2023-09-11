@@ -19,6 +19,7 @@ export default {
             cvv: "",
             card_name: "",
             prova: "",
+            isPayment: 0
         }
     },
     methods: {
@@ -71,7 +72,27 @@ export default {
                     res_id: res_id
                 })
                 .then((response) => {
-                    console.log(response)
+                    console.log(response);
+                    if (response.status == 200) {
+                        this.isPayment = 1
+                        localStorage.clear()
+                        this.name = "" 
+                        this.lastname = ""
+                        this.email = ""
+                        this.address = ""
+                        this.cp = ""
+                        this.phone = ""
+                        this.date = ""
+                        this.card_number = ""
+                        this.cvv = ""
+                        this.card_name = ""
+                        platesForm = ""
+                        priceAll = ""
+                        res_id = ""
+                        this.arrCart = []
+                    } else {
+                        this.isPayment = 2
+                    }
                 })
                 .catch((error) => {
                     console.log(error)
@@ -91,8 +112,14 @@ export default {
 
 <template>
     <template v-if="cartFull == false">
-        <span>Carrello vuoto</span>
+        
     </template>
+    <div class="alert alert-success my-3" v-if="isPayment == 1">
+            Il pagamento è stato inviato con successo.
+        </div>
+        <div class="alert alert-success my-3" v-if="isPayment == 2">
+            Il pagamento è stato inviato con successo.
+        </div>
     <template v-else>
         <div class="container dis d-flex justify-content-between">
             <div class="cont-cart">
@@ -108,8 +135,7 @@ export default {
                 
             </div>
         </div>
-    </template>
-    <form @submit.prevent="sendPayment" class="d-flex flex-column container-sm">
+        <form @submit.prevent="sendPayment" class="d-flex flex-column container-sm">
         <label for="name">Nome</label>
         <input type="text" id="name" v-model="name">
         <label for="lastname">Cognome</label>
@@ -132,8 +158,7 @@ export default {
         <input type="text" id="card_name" v-model="card_name">
         <button type="submit">Invia</button>
     </form>
-
-    <span>{{ prova }}</span>
+    </template>
 </template>
 
 <style lang="scss">
