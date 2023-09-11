@@ -5,6 +5,8 @@ export default {
     return {
       restShow: [],
       listPlate: [],
+      alertResId: false,
+      alertPlate: false,
     };
   },
   methods: {
@@ -21,10 +23,18 @@ export default {
     },
     setListPlate() {
       if (localStorage.getItem("cart") !== null) {
-        this.listPlate = JSON.parse(localStorage.getItem("cart"))
+        if (JSON.parse(localStorage.getItem("cart"))[0].res_id == this.$route.params.restaurant) {
+          this.alertResId = false
+          this.listPlate = JSON.parse(localStorage.getItem("cart"))
+        } else {
+          this.alertResId = true
+          this.restShow.forEach(element => {
+            this.listPlate.push({ id: element.id, quantit: 0, res_id: element.restaurant_id })
+          })
+        }
       } else {
         this.restShow.forEach(element => {
-          this.listPlate.push({ id: element.id, quantit: 0 })
+          this.listPlate.push({ id: element.id, quantit: 0, res_id: element.restaurant_id })
         })
       }
     },
@@ -36,23 +46,38 @@ export default {
       console.log("Sono Morte, il distruttore di mondi");
     },
     modPlate(id, sign, key) {
-      document.querySelectorAll(".text-danger").forEach(element => {
-        element.innerHTML = ""
-      })
+      if (localStorage.getItem("cart") !== null) {
+        if (JSON.parse(localStorage.getItem("cart"))[0].res_id == this.$route.params.restaurant) {
+          if (sign == "-") {
+            let quantit = this.listPlate[key].quantit
+            quantit--
+            if (quantit <= -1) {
+              this.listPlate[key].quantit = 0
+            } else {
+              this.listPlate[key].quantit--
+            }
+          } else {
+            this.listPlate[key].quantit++
+          }
 
-      if (sign == "-") {
-        let quantit = this.listPlate[key].quantit
-        quantit--
-        if (quantit <= -1) {
-          this.listPlate[key].quantit = 0
+          localStorage.setItem('cart', JSON.stringify(this.listPlate))
         } else {
-          this.listPlate[key].quantit--
+          this.alertPlate = true
         }
       } else {
-        this.listPlate[key].quantit++
+        if (sign == "-") {
+            let quantit = this.listPlate[key].quantit
+            quantit--
+            if (quantit <= -1) {
+              this.listPlate[key].quantit = 0
+            } else {
+              this.listPlate[key].quantit--
+            }
+          } else {
+            this.listPlate[key].quantit++
+          }
+          localStorage.setItem('cart', JSON.stringify(this.listPlate))
       }
-
-      localStorage.setItem('cart', JSON.stringify(this.listPlate))
 
     }
   },
@@ -93,6 +118,13 @@ export default {
         <h1>{{ restaurant.rest_name }}</h1>
         <p>{{ restaurant.address }}</p>
       </div>
+    </div>
+
+    <div class="alert alert-danger my-3" v-if="alertResId">
+      Attenzione, sei su un altro ristorante, non potrai ordinare piatti da qui.
+    </div>
+    <div class="alert alert-warning" role="alert" v-if="alertPlate">
+      Attenzione, non puoi ordinare da un altro ristorante.
     </div>
 
     <div class="dish-container">
@@ -198,7 +230,7 @@ export default {
 
     .add {
       flex: 1 0 0;
-      display:flex;
+      display: flex;
       justify-content: center;
     }
   }
@@ -206,11 +238,12 @@ export default {
 
 .switch-dock {
   stroke-width: 1px;
-  border:1px solid #37363D;
+  border: 1px solid #37363D;
   width: 92px;
   height: 52px;
   border-radius: 5px;
 }
+
 .joycon-left {
   width: 20px;
   height: 40px;
@@ -218,6 +251,7 @@ export default {
   background: #F9F7ED;
   animation-fill-mode: forwards;
   animation-play-state: paused;
+
   &:active {
     animation-play-state: running;
   }
@@ -227,13 +261,16 @@ export default {
   0% {
     background-color: #F9F7ED;
   }
+
   50% {
     background-color: #00c3e3;
   }
+
   100% {
     background-color: #F9F7ED;
   }
 }
+
 .joycon-right {
   width: 20px;
   height: 40px;
@@ -241,6 +278,7 @@ export default {
   background: #F9F7ED;
   animation: color-change-right 0.1s;
   animation-play-state: paused;
+
   &:active {
     animation-play-state: running;
   }
@@ -250,14 +288,16 @@ export default {
   0% {
     background-color: #F9F7ED;
   }
+
   50% {
     background-color: #ff4554;
   }
+
   100% {
     background-color: #F9F7ED;
   }
 }
+
 .switch-screen {
   width: 40px;
-}
-</style>
+}</style>
