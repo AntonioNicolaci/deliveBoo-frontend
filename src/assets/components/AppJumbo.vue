@@ -8,7 +8,7 @@ export default {
 
 <template>
   <div class="jumbo">
-    <img src="../img/jumbo-deliveboo.png" alt="" />
+    <!-- <img src="../img/jumbo-deliveboo.png" alt="" /> -->
   </div>
 </template>
 
@@ -23,11 +23,12 @@ export default {
 
 .jumbo {
   margin-bottom: 2rem;
-}
-
-.jumbo img {
-  width: 100%;
   height: 500px;
-  background-size: 100% 100%;
+  width: 100%;
+  background-image: url("../img/jumbo-deliveboo.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #37363c;
 }
 </style>
