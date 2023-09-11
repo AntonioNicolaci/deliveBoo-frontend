@@ -161,6 +161,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 .rest-container {
   background-color: #e6e0d7;
   padding: 1rem 0.9rem;
@@ -186,6 +187,16 @@ export default {
     .title {
       flex: 0 0 60%;
       text-align: center;
+
+      h1 {
+        font-family: "Permanent Marker", cursive;
+        font-size: 3.5rem;
+      }
+
+      p {
+        font-size: 2rem;
+        font-style: italic;
+      }
     }
   }
 

@@ -7,7 +7,6 @@ export default {
 </script>
 
 <template>
-  <!-- d-flex justify-content-around align-items-center -->
   <div class="nav">
     <input type="checkbox" id="nav-check" />
     <div class="top-container">
@@ -21,9 +20,7 @@ export default {
       </label>
     </div>
 
-    <!-- d-flex flex-row gap-3 justify-content-center align-items-center -->
     <div class="nav-links">
-      <!-- <div class="col-md-3"> -->
       <a
         href="http://127.0.0.1:8000/"
         id="btn-accedi"
@@ -31,14 +28,7 @@ export default {
         target="_blank"
       >
         Registrati
-        <!-- <button
-            type="button"
-            id="btn-registrati"
-            class="btn btn-links"
-          ></button> -->
       </a>
-      <!-- </div>
-      <div class="col-md-3"> -->
       <a
         href="http://127.0.0.1:8000/login"
         id="btn-accedi"
@@ -46,25 +36,14 @@ export default {
         target="_blank"
       >
         Accedi
-        <!-- <button type="button" id="btn-accedi" class="btn btn-links">
-          </button> -->
       </a>
-      <!-- </div>
-      <div class="col-md-3"> -->
       <router-link
         :to="{ name: 'cart' }"
         class="nav-link active btn-links"
         aria-current="page"
-        target="_blank"
       >
         <i class="bi bi-bag-fill"></i>
-        <!-- <button
-            type="button"
-            id="btn-carrello"
-            class="btn btn-links"
-          ></button> -->
       </router-link>
-      <!-- </div> -->
     </div>
   </div>
 </template>
