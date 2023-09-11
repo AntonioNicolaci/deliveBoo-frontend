@@ -31,7 +31,7 @@ export default {
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 .card {
-  max-width: 300px;
+  min-width: 300px;
   text-decoration: none;
   color: rgb(55, 54, 60);
   //border: 1px solid rgb(55, 54, 60);

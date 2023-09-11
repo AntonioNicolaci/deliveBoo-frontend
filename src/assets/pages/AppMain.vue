@@ -89,9 +89,9 @@ export default {
           {{ this.randomResoult }}
         </span>
       </div>
-      <div class="cont-card">
+      <div class="container d-flex align-items-center mt-5">
         <div class="row">
-          <div class="col-xxl-2 col-md-3 col-sm-12" v-for="  restaurant   in   filteredRest  " :key="restaurant.id">
+          <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 d-flex align-items-center justify-content-start mb-4" v-for="  restaurant   in   filteredRest  " :key="restaurant.id">
             <AppRestaurantCard :restaurant="restaurant"/>
           </div>
         </div>
