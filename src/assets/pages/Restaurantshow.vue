@@ -16,9 +16,10 @@ export default {
           "http://127.0.0.1:8000/api/restaurants/" +
           String(this.$route.params.restaurant)
         )
-        .then(
-          (response) => ((this.restShow = response.data), this.setListPlate())
-        );
+        .then(response => (
+          this.restShow = response.data,
+          this.setListPlate()
+        ));
     },
     setListPlate() {
       if (localStorage.getItem("cart") !== null) {
@@ -41,7 +42,7 @@ export default {
       return `/img/${img}`;
     },
     destroyStorage() {
-      localStorage.clear();
+      localStorage.clear()
       console.log("Sono Morte, il distruttore di mondi");
     },
     modPlate(id, sign, key) {
@@ -60,36 +61,51 @@ export default {
           }
 
           localStorage.setItem('cart', JSON.stringify(this.listPlate))
-
+        } else {
+          this.alertPlate = true
         }
-      }
-    },
-    computed: {
-      uniqueRestaurants() {
-        // Raggruppa i piatti per ristorante
-        const restaurantMap = new Map();
-        this.restShow.forEach((item) => {
-          const { restaurant_id, rest_name, address, img } = item;
-          if (!restaurantMap.has(restaurant_id)) {
-            restaurantMap.set(restaurant_id, {
-              id: restaurant_id,
-              rest_name,
-              address,
-              img,
-              plates: [],
-            });
+      } else {
+        if (sign == "-") {
+            let quantit = this.listPlate[key].quantit
+            quantit--
+            if (quantit <= -1) {
+              this.listPlate[key].quantit = 0
+            } else {
+              this.listPlate[key].quantit--
+            }
+          } else {
+            this.listPlate[key].quantit++
           }
-          restaurantMap.get(restaurant_id).plates.push(item);
-        });
-        return Array.from(restaurantMap.values());
-      },
-    },
+          localStorage.setItem('cart', JSON.stringify(this.listPlate))
+      }
 
-    created() {
-      this.getPaltes();
+    }
+  },
+  computed: {
+    uniqueRestaurants() {
+      // Raggruppa i piatti per ristorante
+      const restaurantMap = new Map();
+      this.restShow.forEach((item) => {
+        const { restaurant_id, rest_name, address, img } = item;
+        if (!restaurantMap.has(restaurant_id)) {
+          restaurantMap.set(restaurant_id, {
+            id: restaurant_id,
+            rest_name,
+            address,
+            img,
+            plates: [],
+          });
+        }
+        restaurantMap.get(restaurant_id).plates.push(item);
+      });
+      return Array.from(restaurantMap.values());
     },
-  }
-}
+  },
+
+  created() {
+    this.getPaltes()
+  },
+};
 </script>
 
 <template>
