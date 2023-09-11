@@ -90,26 +90,24 @@ export default {
           <span></span>
           <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
         </div>
-        <div class="row">
-          <div class="col-xxl-2 col-md-3 col-sm-12">
-            <AppType v-for="singleType in arrTypes" :id="singleType.id" :singleType="singleType" :active="true"
-              @click="pushID(singleType.id)" />
-          </div>
+        <div class="container d-flex justify-content-center flex-wrap gap-4">
+          <AppType v-for="singleType in arrTypes" :id="singleType.id" :singleType="singleType" :active="true"
+            @click="pushID(singleType.id)" />
         </div>
       </div>
-      <div class="cont-text" style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)">
-        <h2 class="d-inline-block text-light">Per te:</h2>
-        <span class="text-light fs-5">
-          {{ this.randomResoult }}
-        </span>
-      </div>
-      <div class="container d-flex align-items-center justify-content-center mt-5">
-        <div class="row">
-          <div
-            class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 d-flex align-items-center justify-content-center mb-4"
-            v-for="restaurant in filteredRest" :key="restaurant.id">
-            <AppRestaurantCard :restaurant="restaurant" />
-          </div>
+    </div>
+    <div class="cont-text" style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)">
+      <h2 class="d-inline-block text-light">Per te:</h2>
+      <span class="text-light fs-5">
+        {{ this.randomResoult }}
+      </span>
+    </div>
+    <div class="container d-flex align-items-center justify-content-center mt-5">
+      <div class="row">
+        <div
+          class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 d-flex align-items-center justify-content-center mb-4"
+          v-for="restaurant in filteredRest" :key="restaurant.id">
+          <AppRestaurantCard :restaurant="restaurant" />
         </div>
       </div>
     </div>

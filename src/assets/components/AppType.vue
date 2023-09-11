@@ -61,11 +61,4 @@ button {
     border: none;
     background-color: rgb(231, 165, 80);
 }
-
-// @media (min-width: 768px) {
-//     .col-md-2 {
-//         flex: 0 1 auto;
-//     }
-
-// }
 </style>
