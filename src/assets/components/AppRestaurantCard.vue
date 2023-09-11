@@ -13,13 +13,10 @@ export default {
 </script>
 
 <template>
-  <router-link
-    :to="{
-      name: 'restaurants.show',
-      params: { restaurant: restaurant.id },
-    }"
-    class="card h-100"
-  >
+  <router-link :to="{
+    name: 'restaurants.show',
+    params: { restaurant: restaurant.id },
+  }" class="card h-100">
     <img class="card-img-top img" :src="img" :alt="restaurant.name" />
     <div class="card-body">
       <h5 class="card-title">{{ restaurant.rest_name }}</h5>
@@ -30,8 +27,9 @@ export default {
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
 .card {
-  min-width: 300px;
+  min-width: 200px;
   text-decoration: none;
   color: rgb(55, 54, 60);
   //border: 1px solid rgb(55, 54, 60);
