@@ -17,6 +17,7 @@ export default {
       tests: [],
       forza: [],
       filteredRest: [],
+      isActive: 0,
     };
   },
   components: {
@@ -33,10 +34,6 @@ export default {
     addImg(img) {
       return `assets/img/${img}`;
     },
-    restSearch(type) {
-      this.type = type;
-      // Esegui una ricerca in base al tipo di ristorante qui
-    },
     getData() {
       axios.get("http://127.0.0.1:8000/api/data").then((response) => {
         this.arrRest = response.data.restaurants;
@@ -44,38 +41,31 @@ export default {
         this.arrTypes = response.data.types;
         this.arrPlate = response.data.plates;
 
-        this.forza.forEach((su) => {
-          this.selectedRest = this.arrRest.find(
-            (selectedRest) => selectedRest.id === su
-          );
-          this.filteredRest.push(this.selectedRest);
-        });
-        console.log(this.filteredRest);
-
+        this.printRest();
         this.rndNumber();
       });
     },
 
     pushID(id) {
       this.tests = [];
+      this.isActive = true,
       this.tests.push(id);
+      this.forza = [];
+      this.selectedRest = [];
+      this.filteredRest = [];    
       this.resType.forEach((daje) => {
         if (daje.type_id == id) {
-          this.forza.push(daje.restaurant_id);
+          this.forza.push(daje.restaurant_id)
         }
       });
-
+      this.printRest();
+    },
+    printRest() {
       this.forza.forEach((su) => {
-        this.selectedRest = this.arrRest.find(
-          (selectedRest) => selectedRest.id === su
-        );
+        this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === su);
         this.filteredRest.push(this.selectedRest);
-      });
-    },
-
-    minchia() {
-      console.log("daje");
-    },
+    });
+    }
   },
   created() {
     this.getData();
@@ -88,43 +78,22 @@ export default {
     <div class="container-fluid">
       <div class="container-type">
         <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
-        <div v-for="daje in resType">
-          <span></span>
-          <span v-if="this.tests.includes(daje.type_id)">
-            {{ daje.restaurant_id }}</span
-          >
-        </div>
         <div class="container d-flex justify-content-center flex-wrap gap-4">
-          <AppType
-            v-for="singleType in arrTypes"
-            :id="singleType.id"
-            :key="singleType.id"
-            :singleType="singleType"
-            :active="true"
-            @click="pushID(singleType.id)"
-          />
+          <AppType v-for="(singleType, index) in arrTypes" :id="singleType.id" :singleType="singleType" :isActive="isActiveArray"
+            @click="pushID(singleType.id)" />
         </div>
       </div>
-    </div>
-    <div
-      class="cont-text"
-      style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)"
-    >
-      <h2 class="d-inline-block text-light">Per te:</h2>
-      <span class="text-light">
-        {{ this.randomResoult }}
-      </span>
-    </div>
-    <div
-      class="container d-flex align-items-center justify-content-center mt-5"
-    >
-      <div class="row">
-        <div
-          class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 d-flex align-items-center justify-content-center mb-4"
-          v-for="restaurant in filteredRest"
-          :key="restaurant.id"
-        >
-          <AppRestaurantCard :restaurant="restaurant" />
+      <div class="cont-text" style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)">
+        <h2 class="d-inline-block text-light">Per te:</h2>
+        <span class="text-light fs-5">
+          {{ this.randomResoult }}
+        </span>
+      </div>
+      <div class="cont-card">
+        <div class="row">
+          <div class="col-xxl-2 col-md-3 col-sm-12" v-for="  restaurant   in   filteredRest  " :key="restaurant.id">
+            <AppRestaurantCard :restaurant="restaurant"/>
+          </div>
         </div>
       </div>
     </div>
