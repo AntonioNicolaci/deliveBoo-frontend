@@ -62,32 +62,34 @@ export default {
           localStorage.setItem('cart', JSON.stringify(this.listPlate))
 
         }
+      }
+    },
+    computed: {
+      uniqueRestaurants() {
+        // Raggruppa i piatti per ristorante
+        const restaurantMap = new Map();
+        this.restShow.forEach((item) => {
+          const { restaurant_id, rest_name, address, img } = item;
+          if (!restaurantMap.has(restaurant_id)) {
+            restaurantMap.set(restaurant_id, {
+              id: restaurant_id,
+              rest_name,
+              address,
+              img,
+              plates: [],
+            });
+          }
+          restaurantMap.get(restaurant_id).plates.push(item);
+        });
+        return Array.from(restaurantMap.values());
       },
-      computed: {
-        uniqueRestaurants() {
-          // Raggruppa i piatti per ristorante
-          const restaurantMap = new Map();
-          this.restShow.forEach((item) => {
-            const { restaurant_id, rest_name, address, img } = item;
-            if (!restaurantMap.has(restaurant_id)) {
-              restaurantMap.set(restaurant_id, {
-                id: restaurant_id,
-                rest_name,
-                address,
-                img,
-                plates: [],
-              });
-            }
-            restaurantMap.get(restaurant_id).plates.push(item);
-          });
-          return Array.from(restaurantMap.values());
-        },
-      },
+    },
 
-      created() {
-        this.getPaltes();
-      },
-    };
+    created() {
+      this.getPaltes();
+    },
+  }
+}
 </script>
 
 <template>
