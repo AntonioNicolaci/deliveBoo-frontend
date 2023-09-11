@@ -55,6 +55,7 @@ export default {
         this.rndNumber();
       });
     },
+
     pushID(id) {
       this.tests = [];
       this.tests.push(id);
@@ -71,6 +72,7 @@ export default {
         this.filteredRest.push(this.selectedRest);
       });
     },
+
     minchia() {
       console.log("daje");
     },
@@ -88,25 +90,40 @@ export default {
         <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
         <div v-for="daje in resType">
           <span></span>
-          <span v-if="this.tests.includes(daje.type_id)"> {{ daje.restaurant_id }}</span>
+          <span v-if="this.tests.includes(daje.type_id)">
+            {{ daje.restaurant_id }}</span
+          >
         </div>
         <div class="container d-flex justify-content-center flex-wrap gap-4">
-          <AppType v-for="singleType in arrTypes" :id="singleType.id" :singleType="singleType" :active="true"
-            @click="pushID(singleType.id)" />
+          <AppType
+            v-for="singleType in arrTypes"
+            :id="singleType.id"
+            :key="singleType.id"
+            :singleType="singleType"
+            :active="true"
+            @click="pushID(singleType.id)"
+          />
         </div>
       </div>
     </div>
-    <div class="cont-text" style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)">
+    <div
+      class="cont-text"
+      style="background: linear-gradient(267deg, #9f672e 2.83%, #37363d 97.17%)"
+    >
       <h2 class="d-inline-block text-light">Per te:</h2>
-      <span class="text-light fs-5">
+      <span class="text-light">
         {{ this.randomResoult }}
       </span>
     </div>
-    <div class="container d-flex align-items-center justify-content-center mt-5">
+    <div
+      class="container d-flex align-items-center justify-content-center mt-5"
+    >
       <div class="row">
         <div
           class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 d-flex align-items-center justify-content-center mb-4"
-          v-for="restaurant in filteredRest" :key="restaurant.id">
+          v-for="restaurant in filteredRest"
+          :key="restaurant.id"
+        >
           <AppRestaurantCard :restaurant="restaurant" />
         </div>
       </div>
@@ -114,7 +131,8 @@ export default {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 .container-type {
   border-radius: 3rem;
   padding: 1rem;
@@ -127,6 +145,7 @@ export default {
   color: rgb(55, 54, 60);
   padding: 1.5rem 2rem;
   text-align: center;
+  font-family: "Permanent Marker", cursive;
 }
 
 .cont-text {
@@ -145,13 +164,9 @@ export default {
   }
 }
 
-.cont-card {
-  max-width: 1100px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin: 2rem auto;
-  padding: 0.6rem;
+@media (max-width: 600px) {
+  .title {
+    font-size: 2.5rem;
+  }
 }
 </style>
