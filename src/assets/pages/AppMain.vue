@@ -16,6 +16,7 @@ export default {
       tests: [],
       forza: [],
       filteredRest: [],
+      isActive: 0,
     };
   },
   components: {
@@ -30,10 +31,6 @@ export default {
     addImg(img) {
       return `assets/img/${img}`;
     },
-    restSearch(type) {
-      this.type = type;
-      // Esegui una ricerca in base al tipo di ristorante qui
-    },
     getData() {
       axios.get("http://127.0.0.1:8000/api/data").then((response) => {
         this.arrRest = response.data.restaurants;
@@ -41,40 +38,30 @@ export default {
         this.arrTypes = response.data.types;
         this.arrPlate = response.data.plates;
 
-        this.forza.forEach((su) => {
-          this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === su);
-          this.filteredRest.push(this.selectedRest);
-        });
-        console.log(this.filteredRest);
-
+        this.printRest();
         this.rndNumber();
       });
     },
     pushID(id) {
       this.tests = [];
+      this.isActive = true,
       this.tests.push(id);
       this.forza = [];
       this.selectedRest = [];
-      this.filteredRest = [];
-      
+      this.filteredRest = [];    
       this.resType.forEach((daje) => {
         if (daje.type_id == id) {
-
           this.forza.push(daje.restaurant_id)
         }
-      })
-        ;
-
+      });
+      this.printRest();
+    },
+    printRest() {
       this.forza.forEach((su) => {
         this.selectedRest = this.arrRest.find(selectedRest => selectedRest.id === su);
         this.filteredRest.push(this.selectedRest);
-      });
-
-    },
-    minchia() {
-      console.log("daje");
+    });
     }
-
   },
   created() {
     this.getData();
@@ -87,7 +74,7 @@ export default {
       <div class="container-type">
         <h1 class="title">I tuoi piatti preferiti, consegnati da noi</h1>
         <div class="container d-flex justify-content-center flex-wrap gap-4">
-          <AppType v-for="singleType in arrTypes" :id="singleType.id" :singleType="singleType" :active="true"
+          <AppType v-for="(singleType, index) in arrTypes" :id="singleType.id" :singleType="singleType" :isActive="isActiveArray"
             @click="pushID(singleType.id)" />
         </div>
 
@@ -101,7 +88,7 @@ export default {
       <div class="cont-card">
         <div class="row">
           <div class="col-xxl-2 col-md-3 col-sm-12" v-for="  restaurant   in   filteredRest  " :key="restaurant.id">
-            <AppRestaurantCard :restaurant="restaurant" />
+            <AppRestaurantCard :restaurant="restaurant"/>
           </div>
         </div>
       </div>

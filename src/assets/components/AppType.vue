@@ -1,31 +1,31 @@
 <script>
 export default {
     props: {
-        singleType: Array,
-        active: Boolean,
+        singleType: Object,
+        isActive: Boolean,
     },
     data() {
         return {
-            actived: false,
             img: "/" + this.singleType.img,
+            OfflineAudioCompletionEvent: false,
         };
     },
 };
 </script>
 <template>
     <button>
-        <template v-if="active === false">
-            <div class="card col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+        <!-- <template v-if="active === false"> -->
+            <div class="card col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12" :class="{ active: isActive }">
                 <img :src="img" :alt="singleType.name" class="card-image col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
                 <div class="content">{{ singleType.name }}</div>
             </div>
-        </template>
-        <template v-if="active === true">
-            <div class="card col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                <img :src="img" :alt="singleType.name" class="card-image col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+        <!-- </template> -->
+        <!-- <template v-if="active === true">
+            <div class="card col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12 card-active">
+                <img :src="img" :alt="singleType.name" class="card-image  col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12">
                 <div class="content">{{ singleType.name }}</div>
             </div>
-        </template>
+        </template> -->
     </button>
 </template>
 <style lang="scss" scoped>
@@ -53,6 +53,11 @@ export default {
 }
 
 .card:hover {
+    background-color: rgb(55, 54, 60);
+    color: white;
+}
+
+.active {
     background-color: rgb(55, 54, 60);
     color: white;
 }
