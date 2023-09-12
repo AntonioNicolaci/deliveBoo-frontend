@@ -66,17 +66,17 @@ export default {
         }
       } else {
         if (sign == "-") {
-            let quantit = this.listPlate[key].quantit
-            quantit--
-            if (quantit <= -1) {
-              this.listPlate[key].quantit = 0
-            } else {
-              this.listPlate[key].quantit--
-            }
+          let quantit = this.listPlate[key].quantit
+          quantit--
+          if (quantit <= -1) {
+            this.listPlate[key].quantit = 0
           } else {
-            this.listPlate[key].quantit++
+            this.listPlate[key].quantit--
           }
-          localStorage.setItem('cart', JSON.stringify(this.listPlate))
+        } else {
+          this.listPlate[key].quantit++
+        }
+        localStorage.setItem('cart', JSON.stringify(this.listPlate))
       }
 
     }
@@ -167,9 +167,9 @@ export default {
       <i class="bi bi-arrow-left-circle-fill btn-back"></i>
     </router-link>
   </div>
-  <button @click="destroyStorage()" style="background-color: red; width: 100px; height: 50px; color: aliceblue">
+  <!--<button @click="destroyStorage()" style="background-color: red; width: 100px; height: 50px; color: aliceblue">
     Nuke
-  </button>
+  </button>-->
 </template>
 
 <style lang="scss" scoped>
